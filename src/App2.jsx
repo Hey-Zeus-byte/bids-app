@@ -16,7 +16,15 @@ function App() {
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
   const [newDueDate, setNewDueDate] = useState("");
+  const [newProjectType, setNewProjectType] = useState("");
+  const [newConstructType, setNewConstructType] = useState("");
+  const [newDateSent, setNewDateSent] = useState("");
+
   // const [newDone, setNewDone] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState('');
+  const [toUpdateId, setToUpdateId] = useState('');
 
   const [bids, setBids] = useState([]);
   const bidsCollectionRef = collection(db, "bids");
@@ -27,23 +35,43 @@ function App() {
       generalContractor: newGC,
       jobName: newJobName,
       dueDate: newDueDate,
+      projectType: newProjectType,
+      constructType: newConstructType,
+      dateSent: newDateSent,
       // newDone: setNewDone,
     });
   };
 
   const updateBid = async () => {
-    await updateDoc(bidsCollectionRef, {
+    const findBids = await updateDoc(bidsCollectionRef);
+    findBids.forEach( async(bid) => {
+      const getBid = doc(db, "bids", bid.id);
+      await updateDoc(getBid, {
       date: newDate,
       generalContractor: newGC,
       jobName: newJobName,
       dueDate: newDueDate,
+      projectType: newProjectType,
+      constructType: newConstructType,
+      dateSent: newDateSent,
       // newDone: setNewDone,
-    });
+      })
+    })
   };
 
   const deleteBid = async (id) => {
     const bidDoc = doc(db, "bids", id);
     await deleteDoc(bidDoc);
+  };
+
+  const openUpdateDialog = (todo) => {
+    setOpen(true);
+    setToUpdateId(todo.id);
+    setUpdate(todo.name);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -66,18 +94,23 @@ function App() {
             <th>General Contractor</th>
             <th>Job Name</th>
             <th>Due Date</th>
-            <th>Done?</th>
+            <th>Project Type</th>
+            <th>Construction Type</th>
+            <th>Date Sent</th>
           </tr>
         </thead>
       </table>
       {bids.map((bid) => {
         return (
-          <tbody key={bid.id}>
-            <tr>
+          <tbody>
+            <tr key={bid.id}>
               <td>{moment(bid.date).calendar()}</td>
               <td>{bid.generalContractor}</td>
               <td>{bid.jobName}</td>
               <td>{moment(bid.dueDate).calendar()}</td>
+              <td>{bid.projectType}</td>
+              <td>{bid.constructType}</td>
+              <td>{bid.dateSent}</td>
               {/* <td>{bid.newDone}</td> */}
             </tr>
             <button
@@ -138,6 +171,30 @@ function App() {
   );
 }
 
+
+{/* <Dialog open={open} onClose={handleClose}>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="normal"
+            label="Update Todo"
+            type="text"
+            fullWidth
+            name="updateTodo"
+            value={update}
+            onChange={event => setUpdate(event.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={editTodo} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog> */}
+      
 export default App;
 
 // import {useState, useEffect} from "react";
