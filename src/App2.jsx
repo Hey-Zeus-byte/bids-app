@@ -10,6 +10,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import Modal from "./Modal";
 
 function App() {
   const [newDate, setNewDate] = useState("");
@@ -23,11 +24,13 @@ function App() {
   // const [newDone, setNewDone] = useState(false);
 
   const [open, setOpen] = useState(false);
-  const [update, setUpdate] = useState('');
-  const [toUpdateId, setToUpdateId] = useState('');
+  const [update, setUpdate] = useState("");
+  const [toUpdateId, setToUpdateId] = useState("");
 
   const [bids, setBids] = useState([]);
   const bidsCollectionRef = collection(db, "bids");
+
+  const [show, setShow] = useState(false);
 
   const createBid = async () => {
     await addDoc(bidsCollectionRef, {
@@ -42,22 +45,22 @@ function App() {
     });
   };
 
-  const updateBid = async () => {
-    const findBids = await updateDoc(bidsCollectionRef);
-    findBids.forEach( async(bid) => {
-      const getBid = doc(db, "bids", bid.id);
-      await updateDoc(getBid, {
-      date: newDate,
-      generalContractor: newGC,
-      jobName: newJobName,
-      dueDate: newDueDate,
-      projectType: newProjectType,
-      constructType: newConstructType,
-      dateSent: newDateSent,
-      // newDone: setNewDone,
-      })
-    })
-  };
+  // const updateBid = async () => {
+  //   const findBids = await updateDoc(bidsCollectionRef);
+  //   findBids.forEach(async (bid) => {
+  //     const getBid = doc(db, "bids", bid.id);
+  //     await updateDoc(getBid, {
+  //       date: newDate,
+  //       generalContractor: newGC,
+  //       jobName: newJobName,
+  //       dueDate: newDueDate,
+  //       projectType: newProjectType,
+  //       constructType: newConstructType,
+  //       dateSent: newDateSent,
+  //       // newDone: setNewDone,
+  //     });
+  //   });
+  // };
 
   const deleteBid = async (id) => {
     const bidDoc = doc(db, "bids", id);
@@ -68,9 +71,16 @@ function App() {
     setOpen(true);
     setToUpdateId(todo.id);
     setUpdate(todo.name);
-  }
+  };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const editTodo = () => {
+    db.collection("todos").doc(toUpdateId).update({
+      todo: update,
+    });
     setOpen(false);
   };
 
@@ -102,24 +112,24 @@ function App() {
       </table>
       {bids.map((bid) => {
         return (
-          <tbody>
-            <tr key={bid.id}>
+          <tbody key={bid.id}>
+            <tr>
               <td>{moment(bid.date).calendar()}</td>
               <td>{bid.generalContractor}</td>
               <td>{bid.jobName}</td>
               <td>{moment(bid.dueDate).calendar()}</td>
               <td>{bid.projectType}</td>
               <td>{bid.constructType}</td>
-              <td>{bid.dateSent}</td>
-              {/* <td>{bid.newDone}</td> */}
+              <td>{moment(bid.dateSent).calendar()}</td>
             </tr>
             <button
               onClick={() => {
-                updateBid(bid.id);
+                setShow(true);
               }}
             >
               Update Bid
             </button>
+            <Modal onClose={() => setShow(false)} show={show} />
             <button
               onClick={() => {
                 deleteBid(bid.id);
@@ -171,30 +181,6 @@ function App() {
   );
 }
 
-
-{/* <Dialog open={open} onClose={handleClose}>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="normal"
-            label="Update Todo"
-            type="text"
-            fullWidth
-            name="updateTodo"
-            value={update}
-            onChange={event => setUpdate(event.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={editTodo} color="primary">
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog> */}
-      
 export default App;
 
 // import {useState, useEffect} from "react";
