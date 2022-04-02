@@ -1,21 +1,17 @@
 import React, {useState} from "react";
 import {db} from "./firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import {collection, updateDoc, doc} from "firebase/firestore";
 
-const Modal = (props) => {
+const ModalUpdate = (props) => {
   const bidsCollectionRef = collection(db, "bids");
 
   const [newDate, setNewDate] = useState("");
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
   const [newDueDate, setNewDueDate] = useState("");
+  const [newProjectType, setNewProjectType] = useState("");
+  const [newConstructType, setNewConstructType] = useState("");
+  const [newDateSent, setNewDateSent] = useState("");
 
   const updateBid = async () => {
     const findBids = await updateDoc(bidsCollectionRef);
@@ -26,10 +22,9 @@ const Modal = (props) => {
         generalContractor: newGC,
         jobName: newJobName,
         dueDate: newDueDate,
-        // projectType: newProjectType,
-        // constructType: newConstructType,
-        // dateSent: newDateSent,
-        // newDone: setNewDone,
+        projectType: newProjectType,
+        constructType: newConstructType,
+        dateSent: newDateSent,
       });
     });
   };
@@ -79,6 +74,30 @@ const Modal = (props) => {
                 setNewDueDate(event.target.value);
               }}
             />
+            <input
+              type="string"
+              required="required"
+              placeholder="Project Type..."
+              onChange={(event) => {
+                setNewProjectType(event.target.value);
+              }}
+            />
+            <input
+              type="string"
+              required="required"
+              placeholder="Construction Type..."
+              onChange={(event) => {
+                setNewConstructType(event.target.value);
+              }}
+            />
+            <input
+              type="date"
+              required="required"
+              placeholder="Sent Date..."
+              onChange={(event) => {
+                setNewDateSent(event.target.value);
+              }}
+            />
           </form>
         </div>
         <div className="modal-footer">
@@ -94,4 +113,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default ModalUpdate;
