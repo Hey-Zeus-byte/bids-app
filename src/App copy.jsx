@@ -4,7 +4,6 @@ import "./App.css";
 import {db} from "./firebase-config";
 import {collection, getDocs, deleteDoc, addDoc, doc} from "firebase/firestore";
 import ModalUpdate from "./ModalUpdate";
-import Checkbox from "./CheckBox";
 
 function App() {
   const [bids, setBids] = useState([]);
@@ -19,12 +18,6 @@ function App() {
   const bidsCollectionRef = collection(db, "bids");
 
   const [show, setShow] = useState(false);
-
-  const state = {checked: false};
-
-  const handleCheckboxChange = (event) => {
-    this.setState({checked: event.target.checked});
-  };
 
   const createBid = async () => {
     await addDoc(bidsCollectionRef, {
@@ -59,7 +52,6 @@ function App() {
       <table>
         <thead>
           <tr>
-            <th>Check</th>
             <th>Date Posted</th>
             <th>General Contractor</th>
             <th>Job Name</th>
@@ -69,48 +61,45 @@ function App() {
             <th>Date Sent</th>
           </tr>
         </thead>
-        {bids.map((bid) => {
-          return (
-            <tbody key={bid.id}>
-              <tr>
-                <label>
-                  <Checkbox
-                    checked={state.checked}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span style={{marginLeft: 8}}>Sent</span>
-                </label>
-                {/* Check box can not render due to Quote being reached. check next time! */}
-                <td>{moment(bid.date).calendar()}</td>
-                <td>{bid.generalContractor}</td>
-                <td>{bid.jobName}</td>
-                <td>{moment(bid.dueDate).calendar()}</td>
-                <td>{bid.projectType}</td>
-                <td>{bid.constructType}</td>
-                <td>{moment(bid.dateSent).calendar()}</td>
-              </tr>
-              <button
-                onClick={() => {
-                  setShow(true);
-                }}
-              >
-                Update Bid
-              </button>
-              <ModalUpdate onClose={() => setShow(false)} show={show} />
-              <button
-                onClick={() => {
-                  deleteBid(bid.id);
-                }}
-              >
-                Delete Bid
-              </button>
-            </tbody>
-          );
-        })}
       </table>
+      {bids.map((bid) => {
+        return (
+          <tbody key={bid.id}>
+            <tr>
+              <td>{moment(bid.date).calendar()}</td>
+              <td>{bid.generalContractor}</td>
+              <td>{bid.jobName}</td>
+              <td>{moment(bid.dueDate).calendar()}</td>
+              <td>{bid.projectType}</td>
+              <td>{bid.constructType}</td>
+              <td>{moment(bid.dateSent).calendar()}</td>
+            </tr>
+            <button
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              Update Bid
+            </button>
+            <ModalUpdate
+              onClose={() => setShow(false)}
+              theBid={bid}
+              show={show}
+            />
+            <button
+              onClick={() => {
+                deleteBid(bid.id);
+              }}
+            >
+              Delete Bid
+            </button>
+          </tbody>
+        );
+      })}
       <form>
         <input
           type="date"
+          required="required"
           placeholder="Post Date..."
           onChange={(event) => {
             setNewDate(event.target.value);
@@ -118,6 +107,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="General Contractor..."
           onChange={(event) => {
             setNewGC(event.target.value);
@@ -125,6 +115,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Job Name..."
           onChange={(event) => {
             setNewJobName(event.target.value);
@@ -132,6 +123,7 @@ function App() {
         />
         <input
           type="date"
+          required="required"
           placeholder="Due Date..."
           onChange={(event) => {
             setNewDueDate(event.target.value);
@@ -139,6 +131,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Project Type..."
           onChange={(event) => {
             setNewProjectType(event.target.value);
@@ -146,6 +139,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Construction Type..."
           onChange={(event) => {
             setNewConstructType(event.target.value);
@@ -153,6 +147,7 @@ function App() {
         />
         <input
           type="date"
+          required="required"
           placeholder="Sent Date..."
           onChange={(event) => {
             setNewDateSent(event.target.value);

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {db} from "./firebase-config";
-import {collection, updateDoc, doc} from "firebase/firestore";
+import {collection, updateDoc, doc, getDocs, setDoc} from "firebase/firestore";
 
 const ModalUpdate = (props) => {
   const bidsCollectionRef = collection(db, "bids");
@@ -13,11 +13,24 @@ const ModalUpdate = (props) => {
   const [newConstructType, setNewConstructType] = useState("");
   const [newDateSent, setNewDateSent] = useState("");
 
+  // function editBid(updated) {
+  //   bidsCollectionRef
+  //     .doc(updated.id)
+  //     .update(updated)
+  // .catch((err) => {
+  //   alert(err);
+  //   console.error(err);
+  // });
+  // }
+
   const updateBid = async () => {
-    const findBids = await updateDoc(bidsCollectionRef);
-    findBids.forEach(async (bid) => {
+    const findBids = await getDocs(bidsCollectionRef);
+    findBids.forEach((bid) => {
+      // add "async" before (bid) if needed.
+      console.log(bid.id, "=>", bid.data());
       const getBid = doc(db, "bids", bid.id);
-      await updateDoc(getBid, {
+      updateDoc(getBid, {
+        // "await" was removed before the updateDoc function.
         date: newDate,
         generalContractor: newGC,
         jobName: newJobName,
@@ -25,7 +38,11 @@ const ModalUpdate = (props) => {
         projectType: newProjectType,
         constructType: newConstructType,
         dateSent: newDateSent,
+      }).catch((err) => {
+        alert(err);
+        console.error(err);
       });
+      setDoc(doc.bidsCollectionRef, getBid); // Remove if not needed.
     });
   };
 
@@ -40,7 +57,6 @@ const ModalUpdate = (props) => {
           <h4 className="modal-title">Modal Title</h4>
         </div>
         <div className="modal-body">
-          {" "}
           <form>
             <input
               type="date"
