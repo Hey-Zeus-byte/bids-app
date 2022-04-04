@@ -8,42 +8,40 @@ const EditableRow = ({
   return (
     <tr>
       <td>
-        <input
+      <input
           type="date"
           required="required"
+          placeholder="Post Date..."
           name="date"
           value={editFormData.date}
           onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
+        /></td>
+        <td>
         <input
-          type="text"
+          type="string"
           required="required"
-          placeholder="Enter GC"
+          placeholder="General Contractor..."
           name="generalContractor"
           value={editFormData.generalContractor}
           onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
+        /></td>
+        <td>
         <input
-          type="text"
+          type="string"
           required="required"
-          placeholder="Enter Job Name"
+          placeholder="Job Name..."
           name="jobName"
           value={editFormData.jobName}
           onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
+        /></td>
+        <td><input
           type="date"
           required="required"
+          placeholder="Due Date..."
           name="dueDate"
           value={editFormData.dueDate}
           onChange={handleEditFormChange}
-        ></input>
+        />
       </td>
       <td>
         <button type="submit">Save</button>
