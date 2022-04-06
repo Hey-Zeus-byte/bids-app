@@ -15,6 +15,7 @@ const ModalUpdate = (props, bid) => {
     event.preventDefault();
     const bidDoc = doc(db, "bids", bid.id);
     console.log(bid.id, "=>", bid.data());
+
     await updateDoc(bidDoc, {
       date: newDate,
       generalContractor: newGC,
