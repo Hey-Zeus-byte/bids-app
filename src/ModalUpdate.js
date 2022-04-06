@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import {db} from "./firebase-config";
-import {collection, updateDoc, doc, getDocs, setDoc} from "firebase/firestore";
+import {updateDoc, doc} from "firebase/firestore";
 
-const ModalUpdate = (props) => {
-  const bidsCollectionRef = collection(db, "bids");
-
+const ModalUpdate = (props, bid) => {
   const [newDate, setNewDate] = useState("");
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
@@ -13,36 +11,22 @@ const ModalUpdate = (props) => {
   const [newConstructType, setNewConstructType] = useState("");
   const [newDateSent, setNewDateSent] = useState("");
 
-  // function editBid(updated) {
-  //   bidsCollectionRef
-  //     .doc(updated.id)
-  //     .update(updated)
-  // .catch((err) => {
-  //   alert(err);
-  //   console.error(err);
-  // });
-  // }
+  const updateBid = async (event) => {
+    event.preventDefault();
+    const bidDoc = doc(db, "bids", bid.id);
+    console.log(bid.id, "=>", bid.data());
 
-  const updateBid = async () => {
-    const findBids = await getDocs(bidsCollectionRef);
-    findBids.forEach((bid) => {
-      // add "async" before (bid) if needed.
-      console.log(bid.id, "=>", bid.data());
-      const getBid = doc(db, "bids", bid.id);
-      updateDoc(getBid, {
-        // "await" was removed before the updateDoc function.
-        date: newDate,
-        generalContractor: newGC,
-        jobName: newJobName,
-        dueDate: newDueDate,
-        projectType: newProjectType,
-        constructType: newConstructType,
-        dateSent: newDateSent,
-      }).catch((err) => {
-        alert(err);
-        console.error(err);
-      });
-      setDoc(doc.bidsCollectionRef, getBid); // Remove if not needed.
+    await updateDoc(bidDoc, {
+      date: newDate,
+      generalContractor: newGC,
+      jobName: newJobName,
+      dueDate: newDueDate,
+      projectType: newProjectType,
+      constructType: newConstructType,
+      dateSent: newDateSent,
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
     });
   };
 
@@ -54,14 +38,13 @@ const ModalUpdate = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Modal Title</h4>
+          <h4 className="modal-title">Update Modal</h4>
         </div>
         <div className="modal-body">
           <form>
             <input
               type="date"
               required="required"
-              placeholder="Post Date..."
               onChange={(event) => {
                 setNewDate(event.target.value);
               }}
