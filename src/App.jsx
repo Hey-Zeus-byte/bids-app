@@ -4,7 +4,6 @@ import "./App.css";
 import {db} from "./firebase-config";
 import {collection, getDocs, deleteDoc, addDoc, doc} from "firebase/firestore";
 import ModalUpdate from "./ModalUpdate";
-import Checkbox from "./CheckBox";
 
 function App() {
   const [bids, setBids] = useState([]);
@@ -20,11 +19,11 @@ function App() {
 
   const [show, setShow] = useState(false);
 
-  const state = {checked: false};
+  // const state = {checked: false};
 
-  const handleCheckboxChange = (event) => {
-    this.setState({checked: event.target.checked});
-  };
+  // const handleCheckboxChange = (event) => {
+  //   this.setState({checked: event.target.checked});
+  // };
 
   const createBid = async () => {
     await addDoc(bidsCollectionRef, {
@@ -73,14 +72,7 @@ function App() {
           return (
             <tbody key={bid.id}>
               <tr>
-                <label>
-                  <Checkbox
-                    checked={state.checked}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span style={{marginLeft: 8}}>Sent</span>
-                </label>
-                {/* Check box can not render due to Quote being reached. check next time! */}
+                <input type="checkbox" />
                 <td>{moment(bid.date).calendar()}</td>
                 <td>{bid.generalContractor}</td>
                 <td>{bid.jobName}</td>
@@ -118,6 +110,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="General Contractor..."
           onChange={(event) => {
             setNewGC(event.target.value);
@@ -125,6 +118,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Job Name..."
           onChange={(event) => {
             setNewJobName(event.target.value);
@@ -132,6 +126,7 @@ function App() {
         />
         <input
           type="date"
+          required="required"
           placeholder="Due Date..."
           onChange={(event) => {
             setNewDueDate(event.target.value);
@@ -139,6 +134,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Project Type..."
           onChange={(event) => {
             setNewProjectType(event.target.value);
@@ -146,6 +142,7 @@ function App() {
         />
         <input
           type="string"
+          required="required"
           placeholder="Construction Type..."
           onChange={(event) => {
             setNewConstructType(event.target.value);
@@ -153,6 +150,7 @@ function App() {
         />
         <input
           type="date"
+          required="required"
           placeholder="Sent Date..."
           onChange={(event) => {
             setNewDateSent(event.target.value);
