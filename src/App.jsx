@@ -2,40 +2,23 @@ import {useState, useEffect} from "react";
 import moment from "moment";
 import "./App.css";
 import {db} from "./firebase-config";
-import {collection, getDocs, deleteDoc, addDoc, doc} from "firebase/firestore";
+import {deleteDoc, doc, getDocs, collection} from "firebase/firestore";
 import ModalUpdate from "./ModalUpdate";
+import ModalCreate from "./ModalCreate";
 
 function App() {
   const [bids, setBids] = useState([]);
-  const [newDate, setNewDate] = useState("");
-  const [newGC, setNewGC] = useState("");
-  const [newJobName, setNewJobName] = useState("");
-  const [newDueDate, setNewDueDate] = useState("");
-  const [newProjectType, setNewProjectType] = useState("");
-  const [newConstructType, setNewConstructType] = useState("");
-  const [newDateSent, setNewDateSent] = useState("");
 
   const bidsCollectionRef = collection(db, "bids");
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false); // for update modal
+  const [showCreate, setShowCreate] = useState(false); // for create modal
 
   // const state = {checked: false};
 
   // const handleCheckboxChange = (event) => {
   //   this.setState({checked: event.target.checked});
   // };
-
-  const createBid = async () => {
-    await addDoc(bidsCollectionRef, {
-      date: newDate,
-      generalContractor: newGC,
-      jobName: newJobName,
-      dueDate: newDueDate,
-      projectType: newProjectType,
-      constructType: newConstructType,
-      dateSent: newDateSent,
-    });
-  };
 
   const deleteBid = async (id) => {
     const bidDoc = doc(db, "bids", id);
@@ -55,16 +38,33 @@ function App() {
   return (
     <div className="app-container">
       <h1>GSCF Bids List</h1>
+      <button
+        onClick={() => {
+          setShowCreate(true);
+        }}
+        id="create-modal"
+      >
+        Create Bid
+      </button>
+      <ModalCreate
+        onClose={() => setShowCreate(false)}
+        showCreate={showCreate}
+      />
       <table>
         <thead>
           <tr>
-            <th>Check</th>
-            <th>Date Posted</th>
-            <th>General Contractor</th>
+            <th>Bidding</th>
             <th>Job Name</th>
-            <th>Due Date</th>
+            <th>General Contractor</th>
+            <th>City</th>
+            <th>Date Posted</th>
             <th>Project Type</th>
+            <th>Type of Wage</th>
             <th>Construction Type</th>
+            <th>Floor System</th>
+            <th>Roof System</th>
+            <th>Due Date</th>
+            <th>Days Left</th>
             <th>Date Sent</th>
           </tr>
         </thead>
@@ -72,13 +72,18 @@ function App() {
           return (
             <tbody key={bid.id}>
               <tr>
-                <input type="checkbox" />
-                <td>{moment(bid.date).calendar()}</td>
-                <td>{bid.generalContractor}</td>
+                <input type="checkbox" name="bidding" />
                 <td>{bid.jobName}</td>
-                <td>{moment(bid.dueDate).calendar()}</td>
+                <td>{bid.generalContractor}</td>
+                <td>{bid.city}</td>
+                <td>{moment(bid.date).calendar()}</td>
                 <td>{bid.projectType}</td>
+                <td>{bid.wageType}</td>
                 <td>{bid.constructType}</td>
+                <td>{bid.floorSystem}</td>
+                <td>{bid.roofSystem}</td>
+                <td>{moment(bid.dueDate).calendar()}</td>
+                <td>{bid.daysLeft}</td>
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
               <button
@@ -100,65 +105,6 @@ function App() {
           );
         })}
       </table>
-      <form>
-        <input
-          type="date"
-          placeholder="Post Date..."
-          onChange={(event) => {
-            setNewDate(event.target.value);
-          }}
-        />
-        <input
-          type="string"
-          required="required"
-          placeholder="General Contractor..."
-          onChange={(event) => {
-            setNewGC(event.target.value);
-          }}
-        />
-        <input
-          type="string"
-          required="required"
-          placeholder="Job Name..."
-          onChange={(event) => {
-            setNewJobName(event.target.value);
-          }}
-        />
-        <input
-          type="date"
-          required="required"
-          placeholder="Due Date..."
-          onChange={(event) => {
-            setNewDueDate(event.target.value);
-          }}
-        />
-        <input
-          type="string"
-          required="required"
-          placeholder="Project Type..."
-          onChange={(event) => {
-            setNewProjectType(event.target.value);
-          }}
-        />
-        <input
-          type="string"
-          required="required"
-          placeholder="Construction Type..."
-          onChange={(event) => {
-            setNewConstructType(event.target.value);
-          }}
-        />
-        <input
-          type="date"
-          required="required"
-          placeholder="Sent Date..."
-          onChange={(event) => {
-            setNewDateSent(event.target.value);
-          }}
-        />
-        <button onClick={createBid}>Create Bid</button>
-      </form>
-
       <h4 id="bottom">Created By: Jesus Valdez</h4>
     </div>
   );

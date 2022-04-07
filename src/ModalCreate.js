@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import {useState} from "react";
+import "./App.css";
 import {db} from "./firebase-config";
-import {updateDoc, doc} from "firebase/firestore";
+import {collection, addDoc} from "firebase/firestore";
 
-const ModalUpdate = (props) => {
+function ModalCreate(props) {
   const [newDate, setNewDate] = useState("");
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
@@ -14,13 +15,13 @@ const ModalUpdate = (props) => {
   const [newWageType, setNewWageType] = useState("");
   const [newFloorSystem, setNewFloorSystem] = useState("");
   const [newRoofSystem, setNewRoofSystem] = useState("");
-  // const [newDaysLeft, setNewDaysLeft] = useState("");
+  //   const [newDaysLeft, setNewDaysLeft] = useState("");
 
-  const updateBid = async (event, id) => {
-    event.preventDefault();
-    const bidDoc = doc(db, "bids", id);
-    console.log(id, "=>", id.data());
-    await updateDoc(bidDoc, {
+  const bidsCollectionRef = collection(db, "bids");
+
+  const createBid = async () => {
+    //remember to add these in firebase
+    await addDoc(bidsCollectionRef, {
       jobName: newJobName,
       generalContractor: newGC,
       city: newCity,
@@ -31,15 +32,12 @@ const ModalUpdate = (props) => {
       floorSystem: newFloorSystem,
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
-      // daysLeft: newDaysLeft,
+      //   daysLeft: newDaysLeft,
       dateSent: newDateSent,
-    }).catch((err) => {
-      alert(err);
-      console.error(err);
     });
   };
 
-  if (!props.show) {
+  if (!props.showCreate) {
     return null;
   }
 
@@ -47,7 +45,7 @@ const ModalUpdate = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Update Modal</h4>
+          <h4 className="modal-title">Create Modal</h4>
         </div>
         <div className="modal-body">
           <form>
@@ -144,13 +142,13 @@ const ModalUpdate = (props) => {
           <button onClick={props.onClose} className="button">
             Close
           </button>
-          <button onClick={updateBid} className="button">
-            Update
+          <button onClick={createBid} className="button">
+            Create
           </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default ModalUpdate;
+export default ModalCreate;
