@@ -50,6 +50,7 @@ function App() {
         onClose={() => setShowCreate(false)}
         showCreate={showCreate}
       />
+      {/* could pass the bid.id inside ModalCreate, same as UpdateModal */}
       <table>
         <thead>
           <tr>
@@ -93,12 +94,13 @@ function App() {
               >
                 Update Bid
               </button>
-              <ModalUpdate onClose={() => setShow(false)} show={show} />
+              <ModalUpdate onClose={() => setShow(false)} show={show} bidId={bid.id}/>
               <button
                 onClick={() => {
                   deleteBid(bid.id);
                 }}
               >
+                      {/* could pass the bid.id inside ModalCreate if props doesn't work */}
                 Delete Bid
               </button>
             </tbody>
