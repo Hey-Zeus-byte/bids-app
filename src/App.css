@@ -37,6 +37,19 @@ td {
 form * {
   font-size: 20px;
 }
+
+#create-modal {
+  line-height: 50px;
+  width: 180px;
+  font-size: 20pt;
+  font-family: tahoma;
+  margin-top: 15px;
+  margin-right: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 #bottom {
   position: absolute;
   bottom: 0;
