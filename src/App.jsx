@@ -5,8 +5,9 @@ import {db} from "./firebase-config";
 import {deleteDoc, doc, getDocs, collection} from "firebase/firestore";
 import ModalUpdate from "./ModalUpdate";
 import ModalCreate from "./ModalCreate";
+import img from "./logo/GSCFINC.jpg";
 
-function App() {
+function App(bid) {
   const [bids, setBids] = useState([]);
 
   const bidsCollectionRef = collection(db, "bids");
@@ -32,7 +33,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>GSCF Bids List</h1>
+      <img src={img} alt="logo"/>
+      {/* <h1 className="title">GSCF Bids List</h1> */}
       <button
         onClick={() => {
           setShowCreate(true);
@@ -44,6 +46,19 @@ function App() {
       <ModalCreate
         onClose={() => setShowCreate(false)}
         showCreate={showCreate}
+      />
+      <button
+      onClick={() => {
+      setSelectedId(bid.id);
+      }}
+      id="create-modal-update"
+      >
+      Update Bid
+      </button>
+      <ModalUpdate
+      onClose={() => setSelectedId(null)}
+      selectedId={selectedId}
+      bidId={bid.id}
       />
       {/* could pass the bid.id inside ModalCreate, same as UpdateModal */}
       <table>
@@ -83,18 +98,6 @@ function App() {
                 {/* this will be the difference between date posted and deadline */}
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
-              <button
-                onClick={() => {
-                  setSelectedId(bid.id);
-                }}
-              >
-                Update Bid
-              </button>
-              <ModalUpdate
-                onClose={() => setSelectedId(null)}
-                selectedId={selectedId}
-                bidId={bid.id}
-              />
               <button
                 onClick={() => {
                   deleteBid(bid.id);
