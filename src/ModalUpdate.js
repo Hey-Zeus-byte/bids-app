@@ -16,10 +16,10 @@ const ModalUpdate = (props) => {
   const [newRoofSystem, setNewRoofSystem] = useState("");
   // const [newDaysLeft, setNewDaysLeft] = useState("");
 
-  const updateBid = async (event) => {
-    event.preventDefault();
+  const updateBid = async () => {
+    // event.preventDefault();
     const bidDoc = doc(db, "bids", props.bidId);
-    console.log(props.bidId, "=>", props.bidId.data());
+    console.log(props.bidId);
     await updateDoc(bidDoc, {
       jobName: newJobName,
       generalContractor: newGC,
@@ -83,7 +83,7 @@ const ModalUpdate = (props) => {
               }}
             />
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Project Type..."
               onChange={(event) => {
@@ -91,7 +91,7 @@ const ModalUpdate = (props) => {
               }}
             />
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Type of Wage..."
               onChange={(event) => {
@@ -107,7 +107,7 @@ const ModalUpdate = (props) => {
               }}
             />{" "}
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Floor System..."
               onChange={(event) => {
@@ -115,7 +115,7 @@ const ModalUpdate = (props) => {
               }}
             />
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Roof System..."
               onChange={(event) => {

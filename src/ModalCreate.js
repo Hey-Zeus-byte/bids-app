@@ -81,7 +81,7 @@ function ModalCreate(props) {
               }}
             />
             <input
-              type="date"
+              type="text"
               required="required"
               placeholder="Project Type..."
               onChange={(event) => {
@@ -89,7 +89,7 @@ function ModalCreate(props) {
               }}
             />
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Type of Wage..."
               onChange={(event) => {
@@ -105,7 +105,7 @@ function ModalCreate(props) {
               }}
             />{" "}
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Floor System..."
               onChange={(event) => {
@@ -113,7 +113,7 @@ function ModalCreate(props) {
               }}
             />
             <input
-              type="date"
+              type="string"
               required="required"
               placeholder="Roof System..."
               onChange={(event) => {

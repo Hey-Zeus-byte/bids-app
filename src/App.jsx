@@ -11,18 +11,13 @@ function App() {
 
   const bidsCollectionRef = collection(db, "bids");
 
-  const [show, setShow] = useState(false); // for update modal
+  const [show, setShow] = useState(); // for update modal
   const [showCreate, setShowCreate] = useState(false); // for create modal
-
-  // const state = {checked: false};
-
-  // const handleCheckboxChange = (event) => {
-  //   this.setState({checked: event.target.checked});
-  // };
 
   const deleteBid = async (id) => {
     const bidDoc = doc(db, "bids", id);
     await deleteDoc(bidDoc);
+    console.log("Deleted post data from id: " + id);
   };
 
   useEffect(() => {
@@ -85,22 +80,27 @@ function App() {
                 <td>{bid.roofSystem}</td>
                 <td>{moment(bid.dueDate).calendar()}</td>
                 <td>{bid.daysLeft}</td>
+                {/* this will be the difference between date posted and deadline */}
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
               <button
                 onClick={() => {
-                  setShow(true);
+                  setShow(bid.id);
                 }}
               >
                 Update Bid
               </button>
-              <ModalUpdate onClose={() => setShow(false)} show={show} bidId={bid.id}/>
+              <ModalUpdate
+                onClose={() => setShow(null)}
+                show={show}
+                bidId={bid.id}
+              />
               <button
                 onClick={() => {
                   deleteBid(bid.id);
                 }}
               >
-                      {/* could pass the bid.id inside ModalCreate if props doesn't work */}
+                {/* could pass the bid.id inside ModalCreate if props doesn't work */}
                 Delete Bid
               </button>
             </tbody>
