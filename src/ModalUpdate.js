@@ -39,7 +39,7 @@ const ModalUpdate = (props) => {
     });
   };
 
-  if (!props.show) {
+  if (!props.selectedId) {
     return null;
   }
 

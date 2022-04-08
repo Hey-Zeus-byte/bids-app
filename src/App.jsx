@@ -11,7 +11,7 @@ function App() {
 
   const bidsCollectionRef = collection(db, "bids");
 
-  const [show, setShow] = useState(); // for update modal
+  const [selectedId, setSelectedId] = useState(); // for update modal
   const [showCreate, setShowCreate] = useState(false); // for create modal
 
   const deleteBid = async (id) => {
@@ -85,14 +85,14 @@ function App() {
               </tr>
               <button
                 onClick={() => {
-                  setShow(bid.id);
+                  setSelectedId(bid.id);
                 }}
               >
                 Update Bid
               </button>
               <ModalUpdate
-                onClose={() => setShow(null)}
-                show={show}
+                onClose={() => setSelectedId(null)}
+                selectedId={selectedId}
                 bidId={bid.id}
               />
               <button
