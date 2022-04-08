@@ -15,12 +15,18 @@ function ModalCreate(props) {
   const [newWageType, setNewWageType] = useState("");
   const [newFloorSystem, setNewFloorSystem] = useState("");
   const [newRoofSystem, setNewRoofSystem] = useState("");
-  //   const [newDaysLeft, setNewDaysLeft] = useState("");
+  const [newDaysLeft, setNewDaysLeft] = useState("");
 
   const bidsCollectionRef = collection(db, "bids");
 
+  const dateDiff = () => {
+    let myCurrentDate = new Date();
+    let refDate = myCurrentDate.getDate()
+    let difference = refDate - newDueDate
+    setNewDaysLeft(difference);
+  }
+
   const createBid = async () => {
-    //remember to add these in firebase
     await addDoc(bidsCollectionRef, {
       jobName: newJobName,
       generalContractor: newGC,
@@ -32,7 +38,6 @@ function ModalCreate(props) {
       floorSystem: newFloorSystem,
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
-      //   daysLeft: newDaysLeft,
       dateSent: newDateSent,
     });
   };
@@ -45,7 +50,7 @@ function ModalCreate(props) {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Create Modal</h4>
+          <h4 className="modal-title">Enter Bid Information:</h4>
         </div>
         <div className="modal-body">
           <form>
@@ -73,13 +78,14 @@ function ModalCreate(props) {
                 setNewCity(event.target.value);
               }}
             />
+            <p>Date Posted</p>
             <input
               type="date"
               required="required"
               onChange={(event) => {
                 setNewDate(event.target.value);
               }}
-            />
+            ></input>
             <input
               type="text"
               required="required"
@@ -120,6 +126,7 @@ function ModalCreate(props) {
                 setNewRoofSystem(event.target.value);
               }}
             />
+            <p>Due Date</p>
             <input
               type="date"
               required="required"
@@ -128,6 +135,7 @@ function ModalCreate(props) {
                 setNewDueDate(event.target.value);
               }}
             />
+            <p>Sent Date</p>
             <input
               type="date"
               required="required"
