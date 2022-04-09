@@ -7,7 +7,7 @@ import ModalUpdate from "./ModalUpdate";
 import ModalCreate from "./ModalCreate";
 import img from "./logo/GSCFINC.jpg";
 
-function App(bid) {
+function App(id) {
   const [bids, setBids] = useState([]);
 
   const bidsCollectionRef = collection(db, "bids");
@@ -33,7 +33,7 @@ function App(bid) {
 
   return (
     <div className="app-container">
-      <img src={img} alt="logo"/>
+      <img src={img} alt="logo" />
       {/* <h1 className="title">GSCF Bids List</h1> */}
       <button
         onClick={() => {
@@ -48,19 +48,18 @@ function App(bid) {
         showCreate={showCreate}
       />
       <button
-      onClick={() => {
-      setSelectedId(bid.id);
-      }}
-      id="create-modal-update"
+        onClick={() => {
+          setSelectedId(id);
+        }}
+        id="create-modal-update"
       >
-      Update Bid
+        Update Bid
       </button>
       <ModalUpdate
-      onClose={() => setSelectedId(null)}
-      selectedId={selectedId}
-      bidId={bid.id}
+        bidId={id}
+        onClose={() => setSelectedId(null)}
+        selectedId={selectedId}
       />
-      {/* could pass the bid.id inside ModalCreate, same as UpdateModal */}
       <table>
         <thead>
           <tr>
@@ -103,7 +102,6 @@ function App(bid) {
                   deleteBid(bid.id);
                 }}
               >
-                {/* could pass the bid.id inside ModalCreate if props doesn't work */}
                 Delete Bid
               </button>
             </tbody>

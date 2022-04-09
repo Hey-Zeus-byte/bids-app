@@ -21,10 +21,10 @@ function ModalCreate(props) {
 
   const dateDiff = () => {
     let myCurrentDate = new Date();
-    let refDate = myCurrentDate.getDate()
-    let difference = refDate - newDueDate
+    let refDate = myCurrentDate.getDate();
+    let difference = refDate - newDueDate;
     setNewDaysLeft(difference);
-  }
+  };
 
   const createBid = async () => {
     await addDoc(bidsCollectionRef, {
