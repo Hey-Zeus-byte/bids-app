@@ -1,5 +1,5 @@
 import {useState} from "react";
-import "./App.css";
+import "./Home.css";
 import {db} from "./firebase-config";
 import {collection, addDoc} from "firebase/firestore";
 
@@ -15,16 +15,16 @@ function ModalCreate(props) {
   const [newWageType, setNewWageType] = useState("");
   const [newFloorSystem, setNewFloorSystem] = useState("");
   const [newRoofSystem, setNewRoofSystem] = useState("");
-  const [newDaysLeft, setNewDaysLeft] = useState("");
+  // const [newDaysLeft, setNewDaysLeft] = useState("");
 
   const bidsCollectionRef = collection(db, "bids");
 
-  const dateDiff = () => {
-    let myCurrentDate = new Date();
-    let refDate = myCurrentDate.getDate();
-    let difference = refDate - newDueDate;
-    setNewDaysLeft(difference);
-  };
+  // const dateDiff = () => {
+  //   let myCurrentDate = new Date();
+  //   let refDate = myCurrentDate.getDate();
+  //   let difference = refDate - newDueDate;
+  //   setNewDaysLeft(difference);
+  // };
 
   const createBid = async () => {
     await addDoc(bidsCollectionRef, {
