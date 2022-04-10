@@ -7,10 +7,11 @@ import ModalUpdate from "./ModalUpdate";
 import ModalCreate from "./ModalCreate";
 import img from "./logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
+import bids from "./mock-data.json";
 
-function Home(id) {
+function Home() {
   const navigate = useNavigate();
-  const [bids, setBids] = useState([]);
+  //   const [bids, setBids] = useState([]);
 
   const bidsCollectionRef = collection(db, "bids");
 
@@ -23,18 +24,15 @@ function Home(id) {
     console.log("Deleted post data from id: " + id);
   };
 
-  useEffect(() => {
-    const getBids = async () => {
-      const data = await getDocs(bidsCollectionRef);
-      const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-      setBids(items);
-    };
+  //   useEffect(() => {
+  //     const getBids = async () => {
+  //       const data = await getDocs(bidsCollectionRef);
+  //       const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+  //       setBids(items);
+  //     };
 
-    getBids();
-  }, [bidsCollectionRef]);
-
-  // let bidId = bids.map((doc) => ({id: doc.id}));
-  let bidId = bids.map((doc) => ({id: doc.id}));
+  //     getBids();
+  //   }, [bidsCollectionRef]);
 
   return (
     <div className="app-container">
@@ -51,16 +49,7 @@ function Home(id) {
         onClose={() => setShowCreate(false)}
         showCreate={showCreate}
       />
-      <button
-        onClick={() => {
-          setSelectedId(id);
-        }}
-        id="create-modal-update"
-      >
-        Update Bid
-      </button>
       <ModalUpdate
-        bidId={bidId}
         onClose={() => setSelectedId(null)}
         selectedId={selectedId}
       />
@@ -115,6 +104,14 @@ function Home(id) {
                 }}
               >
                 Delete Bid
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedId(bid.id);
+                }}
+                // id="create-modal-update"
+              >
+                Update Bid
               </button>
             </tbody>
           );

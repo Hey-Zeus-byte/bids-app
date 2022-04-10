@@ -17,10 +17,9 @@ const ModalUpdate = (props) => {
   const [newRoofSystem, setNewRoofSystem] = useState("");
   // const [newDaysLeft, setNewDaysLeft] = useState("");
 
-  const updateBid = async (event) => {
-    event.preventDefault();
-    console.log(props.bidId);
-    const bidDoc = doc(db, "bids", props.bidId);
+  const updateBid = async () => {
+    console.log(props.selectedId);
+    const bidDoc = doc(db, "bids", props.selectedId);
     await updateDoc(bidDoc, {
       jobName: newJobName,
       generalContractor: newGC,
