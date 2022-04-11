@@ -11,7 +11,7 @@ const ChangeOrderLog = () => {
         onClick={() => {
           navigate("/");
         }}
-        className="randomName"
+        className="change-order"
       >
         Go back to bid list
       </button>

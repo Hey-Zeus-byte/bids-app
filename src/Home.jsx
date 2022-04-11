@@ -8,10 +8,12 @@ import ModalCreate from "./ModalCreate";
 import img from "./logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
 import bids from "./mock-data.json";
+import Switch from "./Switch";
 
 function Home() {
   const navigate = useNavigate();
   //   const [bids, setBids] = useState([]);
+  const [isToggled, setIsToggled] = useState(false);
 
   const bidsCollectionRef = collection(db, "bids");
 
@@ -64,7 +66,7 @@ function Home() {
       <table>
         <thead>
           <tr>
-            <th>Bidding</th>
+            <th>Options</th>
             <th>Job Name</th>
             <th>General Contractor</th>
             <th>City</th>
@@ -83,7 +85,28 @@ function Home() {
           return (
             <tbody key={bid.id}>
               <tr>
-                <input type="checkbox" name="bidding" />
+                <button
+                  onClick={() => {
+                    deleteBid(bid.id);
+                  }}
+                  id="delete-button"
+                >
+                  Delete Bid
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedId(bid.id);
+                  }}
+                  id="update-button"
+                >
+                  Update Bid
+                </button>
+                <div>
+                  <Switch
+                    isToggled={isToggled}
+                    onToggle={() => setIsToggled(!isToggled)}
+                  />
+                </div>
                 <td>{bid.jobName}</td>
                 <td>{bid.generalContractor}</td>
                 <td>{bid.city}</td>
@@ -98,21 +121,6 @@ function Home() {
                 {/* this will be the difference between date posted and deadline */}
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
-              <button
-                onClick={() => {
-                  deleteBid(bid.id);
-                }}
-              >
-                Delete Bid
-              </button>
-              <button
-                onClick={() => {
-                  setSelectedId(bid.id);
-                }}
-                // id="create-modal-update"
-              >
-                Update Bid
-              </button>
             </tbody>
           );
         })}

@@ -57,17 +57,20 @@ form * {
   top: 0;
   right: 0;
 }
+#update-button {
+  background-color: blue;
+  color: white;
+  padding: 1px 15px;
+  border-radius: 10px;
+  font-size: 20px;
+}
 
-#create-modal-update {
-  line-height: 50px;
-  width: 180px;
-  font-size: 20pt;
-  font-family: tahoma;
-  margin-top: 15px;
-  margin-right: 100px;
-  position: absolute;
-  top: 0;
-  right: 0;
+#delete-button {
+  background-color: red;
+  color: white;
+  padding: 1px 15px;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 #bottom {
@@ -124,9 +127,9 @@ img {
   width: 180px;
   font-size: 20pt;
   font-family: tahoma;
-  margin-top: 15px;
-  margin-right: 100px;
   position: absolute;
-  top: 0;
-  right: 0;
+}
+
+.yellow {
+  background-color: yellow;
 }
