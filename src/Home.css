@@ -47,6 +47,7 @@ form * {
 }
 
 #create-modal {
+  cursor: pointer;
   line-height: 50px;
   width: 180px;
   font-size: 20pt;
@@ -58,6 +59,7 @@ form * {
   right: 0;
 }
 #update-button {
+  cursor: pointer;
   background-color: blue;
   color: white;
   padding: 1px 15px;
@@ -66,6 +68,7 @@ form * {
 }
 
 #delete-button {
+  cursor: pointer;
   background-color: red;
   color: white;
   padding: 1px 15px;
@@ -123,13 +126,10 @@ img {
 }
 
 .change-order {
+  cursor: pointer;
   line-height: 50px;
   width: 180px;
   font-size: 20pt;
   font-family: tahoma;
   position: absolute;
-}
-
-.yellow {
-  background-color: yellow;
 }
