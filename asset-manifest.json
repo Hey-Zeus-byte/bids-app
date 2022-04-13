@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/bids-app/static/css/main.4e36828c.css",
+    "main.js": "/bids-app/static/js/main.645dffa2.js",
+    "static/media/VirginiaStreetStudios.pdf": "/bids-app/static/media/VirginiaStreetStudios.54eb75fe45d243d8b723.pdf",
+    "static/media/Amador.pdf": "/bids-app/static/media/Amador.9f5f22896afb56d3d997.pdf",
+    "static/media/Burlingame.pdf": "/bids-app/static/media/Burlingame.48e99acf50390fcb9110.pdf",
+    "static/media/GraniteRidge.pdf": "/bids-app/static/media/GraniteRidge.7ef375783bcb33c7a636.pdf",
+    "static/media/Patel.pdf": "/bids-app/static/media/Patel.52933c455c3850b48f09.pdf",
+    "static/media/389First.pdf": "/bids-app/static/media/389First.f12eb056bb907541dfa6.pdf",
+    "static/media/425First.pdf": "/bids-app/static/media/425First.603bed37cb7174ff9a74.pdf",
+    "static/media/Foothill.pdf": "/bids-app/static/media/Foothill.19f090419573a29fa354.pdf",
+    "static/media/GSCFINC.jpg": "/bids-app/static/media/GSCFINC.cbcc857165b01ca970b3.jpg",
+    "index.html": "/bids-app/index.html",
+    "main.4e36828c.css.map": "/bids-app/static/css/main.4e36828c.css.map",
+    "main.645dffa2.js.map": "/bids-app/static/js/main.645dffa2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4e36828c.css",
+    "static/js/main.645dffa2.js"
+  ]
+}
