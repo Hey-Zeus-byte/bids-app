@@ -13,7 +13,7 @@ const Switch = ({rounded = false, isToggled, onToggle, isToggledId, value}) => {
         type="checkbox"
         checked={isToggled}
         onChange={onToggle}
-        bidId={isToggledId}
+        // bidId={isToggledId}
         value={value}
       />
       <span className={sliderCX}>Sent?</span>
