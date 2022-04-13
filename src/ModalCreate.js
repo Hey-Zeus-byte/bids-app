@@ -78,7 +78,7 @@ function ModalCreate(props) {
                 setNewCity(event.target.value);
               }}
             />
-            <p>Date Posted</p>
+            <p>Date Posted:</p>
             <input
               type="date"
               required="required"
@@ -126,7 +126,7 @@ function ModalCreate(props) {
                 setNewRoofSystem(event.target.value);
               }}
             />
-            <p>Due Date</p>
+            <p>Due Date:</p>
             <input
               type="date"
               required="required"
@@ -135,7 +135,7 @@ function ModalCreate(props) {
                 setNewDueDate(event.target.value);
               }}
             />
-            <p>Sent Date</p>
+            <p>Sent Date:</p>
             <input
               type="date"
               required="required"

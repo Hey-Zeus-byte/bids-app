@@ -15,8 +15,10 @@ const ChangeOrderLog = () => {
 
   return (
     <div>
-      <h1 style={{color: "red"}}>In the works...</h1>
-      <h1 style={{color: "brown"}}>Change Order Logs</h1>
+      <h1 style={{color: "red", fontSize: "50px"}}>In the works...</h1>
+      <h1 style={{color: "brown", textAlign: "center", fontSize: "80px"}}>
+        Change Order Logs
+      </h1>
       <button
         onClick={() => {
           navigate("/");
@@ -25,69 +27,62 @@ const ChangeOrderLog = () => {
       >
         Go back to bid list
       </button>
-      <div>
-        <h1>389 First</h1>
+      <div className="iframe-container">
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>389 First</h1>
         <iframe
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           src={img1}
-          sandbox=""
           title="389"
-          type="application/pdf"
         />
 
-        <h1>425 First</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>425 First</h1>
         <iframe
           src={img2}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="425"
         />
 
-        <h1>Amador</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>Amador</h1>
         <iframe
           src={Amador}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="amador"
         />
 
-        <h1>Burlingame</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>Burlingame</h1>
         <iframe
           src={Burlingame}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="burlingame"
         />
 
-        <h1>Foothill</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>Foothill</h1>
         <iframe
           src={Foothill}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="foothill"
         />
 
-        <h1>Granite Ridge</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>Granite Ridge</h1>
         <iframe
           src={GraniteRidge}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="graniteridge"
         />
 
-        <h1>Patel Residence</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>Patel Residence</h1>
         <iframe
           src={Patel}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="patel"
         />
 
-        <h1>Virginia Street Studios</h1>
+        <h1 style={{textAlign: "center", fontSize: "50px"}}>
+          Virginia Street Studios
+        </h1>
         <iframe
           src={VSS}
-          sandbox=""
-          style={{width: "800px", height: "666px"}}
+          style={{width: "2500px", height: "700px"}}
           title="VSS"
         />
       </div>

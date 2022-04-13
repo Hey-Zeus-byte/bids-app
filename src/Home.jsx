@@ -12,8 +12,9 @@ import Switch from "./Switch";
 
 function Home() {
   const navigate = useNavigate();
-  //   const [bids, setBids] = useState([]);
+  // const [bids, setBids] = useState([]);
   const [isToggled, setIsToggled] = useState(false);
+  const [isToggledId, setIsToggledId] = useState();
 
   const bidsCollectionRef = collection(db, "bids");
 
@@ -26,15 +27,15 @@ function Home() {
     console.log("Deleted post data from id: " + id);
   };
 
-  //   useEffect(() => {
-  //     const getBids = async () => {
-  //       const data = await getDocs(bidsCollectionRef);
-  //       const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-  //       setBids(items);
-  //     };
+  // useEffect(() => {
+  //   const getBids = async () => {
+  //     const data = await getDocs(bidsCollectionRef);
+  //     const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+  //     setBids(items);
+  //   };
 
-  //     getBids();
-  //   }, [bidsCollectionRef]);
+  //   getBids();
+  // }, [bidsCollectionRef]);
 
   return (
     <div className="app-container">
@@ -104,7 +105,10 @@ function Home() {
                 <div>
                   <Switch
                     isToggled={isToggled}
+                    isToggledId={bid.id}
                     onToggle={() => setIsToggled(!isToggled)}
+                    onChange={() => setIsToggledId(!isToggledId)}
+                    value={bid.checkbox}
                   />
                 </div>
                 <td>{bid.jobName}</td>

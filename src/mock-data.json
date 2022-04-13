@@ -1,37 +1,39 @@
 [
-    {
-      "id": 1,
-      "date": "1/31/2022",
-      "generalContractor": "Lennar",
-      "jobName": "East Podium",
-      "dueDate": "4/12/2022"
-    },
-    {
-      "id": 2,
-      "date": "1/31/2022",
-      "generalContractor": "Summerhill Homes",
-      "jobName": "Verano",
-      "dueDate": "2/19/2022"
-    },
-    {
-      "id": 3,
-      "date": "2/1/2022",
-      "generalContractor": "Toll Brothers",
-      "jobName": "East Lawrence",
-      "dueDate": "2/16/2022"
-    },
-    {
-      "id": 4,
-      "date": "2/5/2022",
-      "generalContractor": "GSCF",
-      "jobName": "House",
-      "dueDate": "7/1/2022"
-    },
-    {
-      "id": 5,
-      "date": "3/1/2022",
-      "generalContractor": "Huff",
-      "jobName": "Mountain House",
-      "dueDate": "4/2/2022"
-    }
-  ]
+  {
+    "id": 1,
+    "checkbox": true,
+    "date": "1/31/2022",
+    "generalContractor": "Lennar",
+    "jobName": "East Podium",
+    "dueDate": "4/12/2022"
+  },
+  {
+    "id": 2,
+    "checkbox": false,
+    "date": "1/31/2022",
+    "generalContractor": "Summerhill Homes",
+    "jobName": "Verano",
+    "dueDate": "2/19/2022"
+  },
+  {
+    "id": 3,
+    "date": "2/1/2022",
+    "generalContractor": "Toll Brothers",
+    "jobName": "East Lawrence",
+    "dueDate": "2/16/2022"
+  },
+  {
+    "id": 4,
+    "date": "2/5/2022",
+    "generalContractor": "GSCF",
+    "jobName": "House",
+    "dueDate": "7/1/2022"
+  },
+  {
+    "id": 5,
+    "date": "3/1/2022",
+    "generalContractor": "Huff",
+    "jobName": "Mountain House",
+    "dueDate": "4/2/2022"
+  }
+]
