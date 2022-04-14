@@ -56,8 +56,8 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.jobName}
-              placeholder={props.selectedId.jobName}
+              defaultValue={props.selectedId.newJobName}
+              placeholder={props.selectedId.newJobName}
               onChange={(event) => {
                 setNewJobName(event.target.value);
               }}
@@ -65,7 +65,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.generalContractor}
+              defaultValue={props.selectedId.generalContractor}
               placeholder={props.selectedId.generalContractor}
               onChange={(event) => {
                 setNewGC(event.target.value);
@@ -74,7 +74,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.city}
+              defaultValue={props.selectedId.city}
               placeholder={props.selectedId.city}
               onChange={(event) => {
                 setNewCity(event.target.value);
@@ -84,7 +84,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.date}
+              defaultValue={props.selectedId.date}
               placeholder={props.selectedId.date}
               onChange={(event) => {
                 setNewDate(event.target.value);
@@ -93,7 +93,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.projectType}
+              defaultValue={props.selectedId.projectType}
               placeholder={props.selectedId.projectType}
               onChange={(event) => {
                 setNewProjectType(event.target.value);
@@ -102,7 +102,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.wageType}
+              defaultValue={props.selectedId.wageType}
               placeholder={props.selectedId.wageType}
               onChange={(event) => {
                 setNewWageType(event.target.value);
@@ -111,7 +111,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.constructType}
+              defaultValue={props.selectedId.constructType}
               placeholder={props.selectedId.constructType}
               onChange={(event) => {
                 setNewConstructType(event.target.value);
@@ -120,7 +120,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.floorSystem}
+              defaultValue={props.selectedId.floorSystem}
               placeholder={props.selectedId.floorSystem}
               onChange={(event) => {
                 setNewFloorSystem(event.target.value);
@@ -129,7 +129,7 @@ const ModalUpdate = (props) => {
             <input
               type="string"
               required="required"
-              value={props.selectedId.roofSystem}
+              defaultValue={props.selectedId.roofSystem}
               placeholder={props.selectedId.roofSystem}
               onChange={(event) => {
                 setNewRoofSystem(event.target.value);
@@ -139,7 +139,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.dueDate}
+              defaultValue={props.selectedId.dueDate}
               placeholder={props.selectedId.dueDate}
               onChange={(event) => {
                 setNewDueDate(event.target.value);
@@ -149,7 +149,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.dateSent}
+              defaultValue={props.selectedId.dateSent}
               placeholder={props.selectedId.dateSent}
               onChange={(event) => {
                 setNewDateSent(event.target.value);
