@@ -7,13 +7,13 @@ import ModalUpdate from "./ModalUpdate";
 import ModalCreate from "./ModalCreate";
 import img from "./logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
-// import bids from "./mock-data.json";
+import bids from "./mock-data.json";
 import Switch from "./Switch";
 
 function Home() {
   const navigate = useNavigate();
-  const [bids, setBids] = useState([]);
-  const [isToggled, setIsToggled] = useState(false);
+  // const [bids, setBids] = useState([]);
+  const [selectedIdSwitch, setSelectedIdSwitch] = useState(); // for switch checkbox
 
   const bidsCollectionRef = collection(db, "bids");
 
@@ -26,15 +26,15 @@ function Home() {
     console.log("Deleted post data from id: " + id);
   };
 
-  useEffect(() => {
-    const getBids = async () => {
-      const data = await getDocs(bidsCollectionRef);
-      const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-      setBids(items);
-    };
+  // useEffect(() => {
+  //   const getBids = async () => {
+  //     const data = await getDocs(bidsCollectionRef);
+  //     const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+  //     setBids(items);
+  //   };
 
-    getBids();
-  }, [bidsCollectionRef]);
+  //   getBids();
+  // }, [bidsCollectionRef]);
 
   return (
     <div className="app-container">
@@ -103,8 +103,10 @@ function Home() {
                 </button>
                 <div>
                   <Switch
-                    isToggled={isToggled}
-                    onToggle={() => setIsToggled(!isToggled)}
+                    onToggle={() => {
+                      setSelectedIdSwitch(bid.id);
+                    }}
+                    selectedIdSwitch={selectedIdSwitch}
                   />
                 </div>
                 <td>{bid.jobName}</td>

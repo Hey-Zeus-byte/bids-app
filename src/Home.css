@@ -25,7 +25,7 @@ th {
   border: 1px solid #ffffff;
   text-align: center;
   padding: 10px;
-  font-size: 18px;
+  font-size: 35px;
   background-color: gold;
 }
 
@@ -33,7 +33,7 @@ td {
   border: 1px solid #ffffff;
   text-align: center;
   padding: 10px;
-  font-size: 18px;
+  font-size: 30px;
   background-color: lightblue;
   width: 100%;
 }
@@ -64,7 +64,7 @@ form * {
   color: white;
   padding: 1px 15px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #delete-button {
@@ -73,7 +73,7 @@ form * {
   color: white;
   padding: 1px 15px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #bottom {
