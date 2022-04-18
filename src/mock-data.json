@@ -1,7 +1,6 @@
 [
   {
     "id": 1,
-    "checkbox": true,
     "date": "1/31/2022",
     "generalContractor": "Lennar",
     "jobName": "East Podium",
@@ -9,7 +8,6 @@
   },
   {
     "id": 2,
-    "checkbox": false,
     "date": "1/31/2022",
     "generalContractor": "Summerhill Homes",
     "jobName": "Verano",

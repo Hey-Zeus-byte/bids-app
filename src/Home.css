@@ -139,3 +139,7 @@ iframe {
   margin: 90px 50px auto;
   background-color: lightslategray;
 }
+
+.options-container {
+  background-color: lightgray;
+}

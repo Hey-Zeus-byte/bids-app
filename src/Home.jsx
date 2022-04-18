@@ -85,29 +85,31 @@ function Home() {
           return (
             <tbody key={bid.id}>
               <tr>
-                <button
-                  onClick={() => {
-                    deleteBid(bid.id);
-                  }}
-                  id="delete-button"
-                >
-                  Delete Bid
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedId(bid.id);
-                  }}
-                  id="update-button"
-                >
-                  Update Bid
-                </button>
-                <div>
-                  <Switch
-                    onToggle={() => {
-                      setSelectedIdSwitch(bid.id);
+                <div className="options-container">
+                  <button
+                    onClick={() => {
+                      deleteBid(bid.id);
                     }}
-                    selectedIdSwitch={selectedIdSwitch}
-                  />
+                    id="delete-button"
+                  >
+                    Delete Bid
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedId(bid.id);
+                    }}
+                    id="update-button"
+                  >
+                    Update Bid
+                  </button>
+                  <div>
+                    <Switch
+                      onToggle={() => {
+                        setSelectedIdSwitch(bid.id);
+                      }}
+                      selectedIdSwitch={selectedIdSwitch}
+                    />
+                  </div>
                 </div>
                 <td>{bid.jobName}</td>
                 <td>{bid.generalContractor}</td>

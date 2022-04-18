@@ -39,7 +39,7 @@ function ModalCreate(props) {
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
       dateSent: newDateSent,
-    });
+    }).onClose();
   };
 
   if (!props.showCreate) {
