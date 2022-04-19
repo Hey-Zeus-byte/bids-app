@@ -1,9 +1,10 @@
 import {useState} from "react";
-import "./Home.css";
-import {db} from "./firebase-config";
+import "../css/Home.css";
+import {db} from "../utils/firebase-config";
 import {collection, addDoc} from "firebase/firestore";
 
 function ModalCreate(props) {
+  const [sent, setSent] = useState(false);
   const [newDate, setNewDate] = useState("");
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
@@ -27,7 +28,9 @@ function ModalCreate(props) {
   // };
 
   const createBid = async () => {
+    console.log("Bid Created Succesful!");
     await addDoc(bidsCollectionRef, {
+      sent: sent,
       jobName: newJobName,
       generalContractor: newGC,
       city: newCity,
@@ -54,6 +57,12 @@ function ModalCreate(props) {
         </div>
         <div className="modal-body">
           <form>
+            <input
+              type="boolean"
+              onChange={() => {
+                setSent(false);
+              }}
+            />
             <input
               type="string"
               required="required"

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {db} from "./firebase-config";
-import "./Home.css";
+import {db} from "../utils/firebase-config";
+import "../css/Home.css";
 import {updateDoc, doc} from "firebase/firestore";
 
 const ModalUpdate = (props) => {
@@ -19,8 +19,8 @@ const ModalUpdate = (props) => {
 
   const updateBid = async (e) => {
     e.preventDefault();
-    console.log("Update Succesful! Bid ID: " + props.selectedId);
-    const bidDoc = doc(db, "bids", props.selectedId);
+    console.log("Update Succesful! Bid ID: " + props.selectedBid.id);
+    const bidDoc = doc(db, "bids", props.selectedBid.id);
     await updateDoc(bidDoc, {
       jobName: newJobName,
       generalContractor: newGC,
@@ -40,7 +40,7 @@ const ModalUpdate = (props) => {
     });
   };
 
-  if (!props.selectedId) {
+  if (!props.selectedBid) {
     return null;
   }
 
@@ -53,12 +53,12 @@ const ModalUpdate = (props) => {
           </h4>
         </div>
         <div className="modal-body">
-          <form key={props.selectedId}>
+          <form>
             <input
               type="text"
               required="required"
-              value={props.selectedId.jobName}
-              placeholder={`Job Name: ${props.selectedId.jobName}`}
+              value={props.selectedBid.jobName}
+              placeholder={`Job Name: ${props.selectedBid.jobName}`}
               name="jobName"
               onChange={(event) => {
                 setNewJobName(event.target.value);
@@ -67,8 +67,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.generalContractor}
-              placeholder={`General Contractor: ${props.selectedId.jobName}`}
+              value={props.selectedBid.generalContractor}
+              placeholder={`General Contractor: ${props.selectedBid.jobName}`}
               name="generalConstractor"
               onChange={(event) => {
                 setNewGC(event.target.value);
@@ -77,8 +77,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.city}
-              placeholder={`City: ${props.selectedId.jobName}`}
+              value={props.selectedBid.city}
+              placeholder={`City: ${props.selectedBid.jobName}`}
               name="city"
               onChange={(event) => {
                 setNewCity(event.target.value);
@@ -88,7 +88,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.date}
+              value={props.selectedBid.date}
               name="date"
               onChange={(event) => {
                 setNewDate(event.target.value);
@@ -97,8 +97,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.projectType}
-              placeholder={`Project Type: ${props.selectedId.jobName}`}
+              value={props.selectedBid.projectType}
+              placeholder={`Project Type: ${props.selectedBid.jobName}`}
               name="projectType"
               onChange={(event) => {
                 setNewProjectType(event.target.value);
@@ -107,8 +107,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.wageType}
-              placeholder={`Wage Type: ${props.selectedId.jobName}`}
+              value={props.selectedBid.wageType}
+              placeholder={`Wage Type: ${props.selectedBid.jobName}`}
               name="wageType"
               onChange={(event) => {
                 setNewWageType(event.target.value);
@@ -117,8 +117,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.constructType}
-              placeholder={`Construction Type: ${props.selectedId.jobName}`}
+              value={props.selectedBid.constructType}
+              placeholder={`Construction Type: ${props.selectedBid.jobName}`}
               name="constructType"
               onChange={(event) => {
                 setNewConstructType(event.target.value);
@@ -127,8 +127,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.floorSystem}
-              placeholder={`Floor System: ${props.selectedId.jobName}`}
+              value={props.selectedBid.floorSystem}
+              placeholder={`Floor System: ${props.selectedBid.jobName}`}
               name="floorSystem"
               onChange={(event) => {
                 setNewFloorSystem(event.target.value);
@@ -137,8 +137,8 @@ const ModalUpdate = (props) => {
             <input
               type="text"
               required="required"
-              value={props.selectedId.roofSystem}
-              placeholder={`Roof System: ${props.selectedId.jobName}`}
+              value={props.selectedBid.roofSystem}
+              placeholder={`Roof System: ${props.selectedBid.jobName}`}
               name="roofSystem"
               onChange={(event) => {
                 setNewRoofSystem(event.target.value);
@@ -148,7 +148,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.dueDate}
+              value={props.selectedBid.dueDate}
               name="dueDate"
               onChange={(event) => {
                 setNewDueDate(event.target.value);
@@ -158,7 +158,7 @@ const ModalUpdate = (props) => {
             <input
               type="date"
               required="required"
-              value={props.selectedId.dateSent}
+              value={props.selectedBid.dateSent}
               name="dateSent"
               onChange={(event) => {
                 setNewDateSent(event.target.value);

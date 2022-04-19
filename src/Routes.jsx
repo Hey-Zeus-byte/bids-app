@@ -1,6 +1,6 @@
 import {Routes as BrowserRoutes, Route} from "react-router-dom";
-import ChangeOrderLog from "./ChangeOrderLog";
-import Home from "./Home";
+import ChangeOrderLog from "./pages/ChangeOrderLog";
+import Home from "./pages/Home";
 
 const Routes = () => {
   return (

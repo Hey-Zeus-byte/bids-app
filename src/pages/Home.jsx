@@ -1,29 +1,50 @@
 import {useState, useEffect} from "react";
 import moment from "moment";
-import "./Home.css";
-import {db} from "./firebase-config";
-import {deleteDoc, doc, getDocs, collection} from "firebase/firestore";
-import ModalUpdate from "./ModalUpdate";
-import ModalCreate from "./ModalCreate";
-import img from "./logo/GSCFINC.jpg";
+import "../css/Home.css";
+import {db} from "../utils/firebase-config";
+import {
+  deleteDoc,
+  doc,
+  getDocs,
+  collection,
+  updateDoc,
+} from "firebase/firestore";
+import ModalUpdate from "../components/ModalUpdate";
+import ModalCreate from "../components/ModalCreate";
+import img from "../logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
-import bids from "./mock-data.json";
-import Switch from "./Switch";
+import bids from "../mock-data.json";
+import Switch from "../components/Switch";
 
 function Home() {
   const navigate = useNavigate();
   // const [bids, setBids] = useState([]);
-  const [selectedIdSwitch, setSelectedIdSwitch] = useState(); // for switch checkbox
+  const [sent, setSent] = useState(false); // created entity always defaults to "false" => ModalCreate
 
   const bidsCollectionRef = collection(db, "bids");
 
-  const [selectedId, setSelectedId] = useState(); // for update modal
+  const [selectedBid, setSelectedBid] = useState(); // for update modal
   const [showCreate, setShowCreate] = useState(false); // for create modal
 
   const deleteBid = async (id) => {
+    console.log("Deleted Bid ID: " + id);
     const bidDoc = doc(db, "bids", id);
     await deleteDoc(bidDoc);
     console.log("Deleted post data from id: " + id);
+  };
+
+  const updateSent = async (bid) => {
+    // e.preventDefault();
+    console.log("Update Sent Succesful! Bid ID: " + bid.id);
+    console.log(bid.sent);
+    const bidDoc = doc(db, "bids", bid.id);
+    setSent(true);
+    await updateDoc(bidDoc, {
+      sent: sent,
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
+    });
   };
 
   // useEffect(() => {
@@ -52,8 +73,8 @@ function Home() {
         showCreate={showCreate}
       />
       <ModalUpdate
-        onClose={() => setSelectedId(null)}
-        selectedId={selectedId}
+        onClose={() => setSelectedBid(null)}
+        selectedBid={selectedBid}
       />
       <button
         onClick={() => {
@@ -96,19 +117,14 @@ function Home() {
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedId(bid.id);
+                      setSelectedBid(bid);
                     }}
                     id="update-button"
                   >
                     Update Bid
                   </button>
                   <div>
-                    <Switch
-                      onToggle={() => {
-                        setSelectedIdSwitch(bid.id);
-                      }}
-                      selectedIdSwitch={selectedIdSwitch}
-                    />
+                    <Switch checked={bid} onChange={updateSent} />
                   </div>
                 </div>
                 <td>{bid.jobName}</td>
