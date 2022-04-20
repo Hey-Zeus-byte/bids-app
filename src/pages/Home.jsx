@@ -13,14 +13,15 @@ import ModalUpdate from "../components/ModalUpdate";
 import ModalCreate from "../components/ModalCreate";
 import img from "../logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
-import bids from "../mock-data.json";
 import Switch from "../components/Switch";
+import Bidding from "../components/Bidding";
+import bids from "../mock-data.json";
 
 function Home() {
   const navigate = useNavigate();
   // const [bids, setBids] = useState([]);
   const [sent, setSent] = useState(false); // created entity always defaults to "false" => ModalCreate
-
+  const [bidding, setBidding] = useState(false);
   const bidsCollectionRef = collection(db, "bids");
 
   const [selectedBid, setSelectedBid] = useState(); // for update modal
@@ -35,12 +36,26 @@ function Home() {
 
   const updateSent = async (bid) => {
     // e.preventDefault();
-    console.log("Update Sent Succesful! Bid ID: " + bid.id);
+    window.alert("Update Sent Succesful! Bid ID: " + bid.id);
     console.log(bid.sent);
     const bidDoc = doc(db, "bids", bid.id);
     setSent(true);
     await updateDoc(bidDoc, {
       sent: sent,
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
+    });
+  };
+
+  const updateBidding = async (bid) => {
+    // e.preventDefault();
+    window.alert("Update Bidding Succesful! Bid ID: " + bid.id);
+    console.log(bid.bidding);
+    const bidDoc = doc(db, "bids", bid.id);
+    setBidding(true);
+    await updateDoc(bidDoc, {
+      bidding: bidding,
     }).catch((err) => {
       alert(err);
       console.error(err);
@@ -68,14 +83,6 @@ function Home() {
       >
         Create Bid
       </button>
-      <ModalCreate
-        onClose={() => setShowCreate(false)}
-        showCreate={showCreate}
-      />
-      <ModalUpdate
-        onClose={() => setSelectedBid(null)}
-        selectedBid={selectedBid}
-      />
       <button
         onClick={() => {
           navigate("/change_order_log");
@@ -124,6 +131,7 @@ function Home() {
                     Update Bid
                   </button>
                   <div>
+                    <Bidding checked={bid} onChange={updateBidding} />
                     <Switch checked={bid} onChange={updateSent} />
                   </div>
                 </div>
@@ -146,6 +154,16 @@ function Home() {
         })}
       </table>
       <h4 id="bottom">Created By: Jesus Valdez</h4>
+      <div>
+        <ModalCreate
+          onClose={() => setShowCreate(false)}
+          showCreate={showCreate}
+        />
+        <ModalUpdate
+          onClose={() => setSelectedBid(null)}
+          selectedBid={selectedBid}
+        />
+      </div>
     </div>
   );
 }

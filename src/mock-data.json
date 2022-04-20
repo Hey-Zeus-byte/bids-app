@@ -2,6 +2,7 @@
   {
     "id": 1,
     "sent": false,
+    "bidding": true,
     "date": "1/31/2022",
     "city": "Fremont",
     "projectType": "Commercial",
@@ -16,6 +17,7 @@
   {
     "id": 2,
     "sent": true,
+    "bidding": true,
     "date": "1/31/2022",
     "city": "Santa Clara",
     "projectType": "Residential",
@@ -30,6 +32,7 @@
   {
     "id": 3,
     "sent": true,
+    "bidding": true,
     "date": "2/1/2022",
     "city": "Santa Clara",
     "projectType": "Residential",
@@ -44,6 +47,7 @@
   {
     "id": 4,
     "sent": false,
+    "bidding": false,
     "date": "2/5/2022",
     "city": "Some City",
     "projectType": "Residential",
@@ -58,6 +62,7 @@
   {
     "id": 5,
     "sent": true,
+    "bidding": false,
     "date": "3/1/2022",
     "city": "Mountain House",
     "projectType": "Residential",
