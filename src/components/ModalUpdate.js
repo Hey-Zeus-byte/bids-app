@@ -19,7 +19,7 @@ const ModalUpdate = (props) => {
 
   const updateBid = async (e) => {
     e.preventDefault();
-    window.alert("Update Succesful! Bid ID: " + props.selectedBid.id);
+    console.log("Update Succesful! Bid ID: " + props.selectedBid.id);
     const bidDoc = doc(db, "bids", props.selectedBid.id);
     await updateDoc(bidDoc, {
       jobName: newJobName,

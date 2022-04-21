@@ -30,7 +30,7 @@ function ModalCreate(props) {
   // };
 
   const createBid = async () => {
-    window.alert("Bid Created Succesful!");
+    console.log("Bid Created Succesful!");
     await addDoc(bidsCollectionRef, {
       sent: sent,
       bidding: bidding,
@@ -45,7 +45,7 @@ function ModalCreate(props) {
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
       dateSent: newDateSent,
-    }).onClose();
+    });
   };
 
   if (!props.showCreate) {
