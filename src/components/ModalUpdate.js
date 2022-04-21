@@ -1,9 +1,9 @@
-import {useState} from "react";
-import "./Home.css";
-import {db} from "./firebase-config";
-import {collection, addDoc} from "firebase/firestore";
+import React, {useState} from "react";
+import {db} from "../utils/firebase-config";
+import "../css/Home.css";
+import {updateDoc, doc} from "firebase/firestore";
 
-function ModalCreate(props) {
+const ModalUpdate = (props) => {
   const [newDate, setNewDate] = useState("");
   const [newGC, setNewGC] = useState("");
   const [newJobName, setNewJobName] = useState("");
@@ -17,17 +17,11 @@ function ModalCreate(props) {
   const [newRoofSystem, setNewRoofSystem] = useState("");
   // const [newDaysLeft, setNewDaysLeft] = useState("");
 
-  const bidsCollectionRef = collection(db, "bids");
-
-  // const dateDiff = () => {
-  //   let myCurrentDate = new Date();
-  //   let refDate = myCurrentDate.getDate();
-  //   let difference = refDate - newDueDate;
-  //   setNewDaysLeft(difference);
-  // };
-
-  const createBid = async () => {
-    await addDoc(bidsCollectionRef, {
+  const updateBid = async (e) => {
+    e.preventDefault();
+    console.log("Update Succesful! Bid ID: " + props.selectedBid.id);
+    const bidDoc = doc(db, "bids", props.selectedBid.id);
+    await updateDoc(bidDoc, {
       jobName: newJobName,
       generalContractor: newGC,
       city: newCity,
@@ -38,11 +32,15 @@ function ModalCreate(props) {
       floorSystem: newFloorSystem,
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
+      // daysLeft: newDaysLeft,
       dateSent: newDateSent,
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
     });
   };
 
-  if (!props.showCreate) {
+  if (!props.selectedBid) {
     return null;
   }
 
@@ -50,30 +48,35 @@ function ModalCreate(props) {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Enter Bid Information:</h4>
+          <h4 className="modal-title">
+            Update Bid Information: No need to fill all entries!
+          </h4>
         </div>
         <div className="modal-body">
           <form>
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="Job Name..."
+              defaultValue={props.selectedBid.jobName}
+              name="jobName"
               onChange={(event) => {
                 setNewJobName(event.target.value);
               }}
             />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="General Contractor..."
+              defaultValue={props.selectedBid.generalContractor}
+              name="generalConstractor"
               onChange={(event) => {
                 setNewGC(event.target.value);
               }}
             />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="City..."
+              defaultValue={props.selectedBid.city}
+              name="city"
               onChange={(event) => {
                 setNewCity(event.target.value);
               }}
@@ -82,46 +85,53 @@ function ModalCreate(props) {
             <input
               type="date"
               required="required"
+              defaultValue={props.selectedBid.date}
+              name="date"
               onChange={(event) => {
                 setNewDate(event.target.value);
               }}
-            ></input>
+            />
             <input
               type="text"
               required="required"
-              placeholder="Project Type..."
+              defaultValue={props.selectedBid.projectType}
+              name="projectType"
               onChange={(event) => {
                 setNewProjectType(event.target.value);
               }}
             />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="Type of Wage..."
+              defaultValue={props.selectedBid.wageType}
+              name="wageType"
               onChange={(event) => {
                 setNewWageType(event.target.value);
               }}
             />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="Construction Type..."
+              defaultValue={props.selectedBid.constructType}
+              name="constructType"
               onChange={(event) => {
                 setNewConstructType(event.target.value);
               }}
-            />{" "}
+            />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="Floor System..."
+              defaultValue={props.selectedBid.floorSystem}
+              name="floorSystem"
               onChange={(event) => {
                 setNewFloorSystem(event.target.value);
               }}
             />
             <input
-              type="string"
+              type="text"
               required="required"
-              placeholder="Roof System..."
+              defaultValue={props.selectedBid.roofSystem}
+              name="roofSystem"
               onChange={(event) => {
                 setNewRoofSystem(event.target.value);
               }}
@@ -130,7 +140,8 @@ function ModalCreate(props) {
             <input
               type="date"
               required="required"
-              placeholder="Due Date..."
+              defaultValue={props.selectedBid.dueDate}
+              name="dueDate"
               onChange={(event) => {
                 setNewDueDate(event.target.value);
               }}
@@ -139,7 +150,8 @@ function ModalCreate(props) {
             <input
               type="date"
               required="required"
-              placeholder="Sent Date..."
+              defaultValue={props.selectedBid.dateSent}
+              name="dateSent"
               onChange={(event) => {
                 setNewDateSent(event.target.value);
               }}
@@ -150,13 +162,13 @@ function ModalCreate(props) {
           <button onClick={props.onClose} className="button">
             Close
           </button>
-          <button onClick={createBid} className="button">
-            Create
+          <button onClick={updateBid} className="button">
+            Update
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default ModalCreate;
+export default ModalUpdate;

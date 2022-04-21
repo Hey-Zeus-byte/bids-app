@@ -1,6 +1,7 @@
-.switch {
+.switch-bidding,
+.switch-sent {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 60px;
   height: 35px;
 }
@@ -19,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: red;
   transition: 0.4s;
 }
 
@@ -48,4 +49,11 @@ input:checked + .slider:before {
 
 .slider.rounded:before {
   border-radius: 50%;
+}
+
+p {
+  margin-left: 2em;
+  position: relative;
+  margin-top: 0em; /* make this margin match whatever your line-height is */
+  line-height: 1.4em;
 }

@@ -1,14 +1,14 @@
 import React from "react";
-import "./Home.css";
+import "../css/Home.css";
 import {useNavigate} from "react-router-dom";
-import img1 from "./pdfs/389First.pdf";
-import img2 from "./pdfs/425First.pdf";
-import Amador from "./pdfs/Amador.pdf";
-import Burlingame from "./pdfs/Burlingame.pdf";
-import Foothill from "./pdfs/Foothill.pdf";
-import GraniteRidge from "./pdfs/GraniteRidge.pdf";
-import Patel from "./pdfs/Patel.pdf";
-import VSS from "./pdfs/VirginiaStreetStudios.pdf";
+import img1 from "../pdfs/389First.pdf";
+import img2 from "../pdfs/425First.pdf";
+import Amador from "../pdfs/Amador.pdf";
+import Burlingame from "../pdfs/Burlingame.pdf";
+import Foothill from "../pdfs/Foothill.pdf";
+import GraniteRidge from "../pdfs/GraniteRidge.pdf";
+import Patel from "../pdfs/Patel.pdf";
+import VSS from "../pdfs/VirginiaStreetStudios.pdf";
 
 const ChangeOrderLog = () => {
   const navigate = useNavigate();

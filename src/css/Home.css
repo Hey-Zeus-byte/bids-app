@@ -25,7 +25,7 @@ th {
   border: 1px solid #ffffff;
   text-align: center;
   padding: 10px;
-  font-size: 18px;
+  font-size: 35px;
   background-color: gold;
 }
 
@@ -33,7 +33,7 @@ td {
   border: 1px solid #ffffff;
   text-align: center;
   padding: 10px;
-  font-size: 18px;
+  font-size: 30px;
   background-color: lightblue;
   width: 100%;
 }
@@ -48,8 +48,9 @@ form * {
 
 #create-modal {
   cursor: pointer;
+  border: 5px solid #4caf50;
   line-height: 50px;
-  width: 180px;
+  width: 200px;
   font-size: 20pt;
   font-family: tahoma;
   margin-top: 15px;
@@ -60,20 +61,22 @@ form * {
 }
 #update-button {
   cursor: pointer;
+  width: 200px;
   background-color: blue;
   color: white;
-  padding: 1px 15px;
-  border-radius: 10px;
-  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 25px;
 }
 
 #delete-button {
   cursor: pointer;
+  width: 200px;
   background-color: red;
   color: white;
-  padding: 1px 15px;
-  border-radius: 10px;
-  font-size: 20px;
+  padding: 1px 10px;
+  border-radius: 15px;
+  font-size: 25px;
 }
 
 #bottom {
@@ -138,4 +141,8 @@ img {
 iframe {
   margin: 90px 50px auto;
   background-color: lightslategray;
+}
+
+.options-container {
+  background-color: lightgray;
 }
