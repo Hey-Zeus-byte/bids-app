@@ -15,7 +15,7 @@ import img from "../logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
 import BidSentSwitch from "../components/BidSentSwitch";
 import BiddingSwitch from "../components/BiddingSwitch";
-import mockBids from "../mock-data.json";
+// import mockBids from "../mock-data.json";
 
 // setState() enqueues changes to the component state and tells React
 // that this component and its children need to be re-rendered with the
@@ -42,8 +42,10 @@ import mockBids from "../mock-data.json";
 
 function Home() {
   const navigate = useNavigate();
-  const [bids, setBids] = useState(mockBids);
+  const [bids, setBids] = useState();
   const bidsCollectionRef = collection(db, "bids");
+  // const [sent, setSent] = useState();
+  // const [bidding, setBidding] = useState();
 
   const [selectedBid, setSelectedBid] = useState(); // for update modal
   const [showCreate, setShowCreate] = useState(false); // for create modal
@@ -58,56 +60,57 @@ function Home() {
   const updateSent = async (bid) => {
     console.log("Update Sent Succesful! Bid ID: " + bid.id);
     console.log(bid.sent);
-    // const bidDoc = doc(db, "bids", bid.id);
-    // await updateDoc(bidDoc, {
-    //   sent: !bid.sent, // ! "bang" sets to opposite "negate"
-    // }).catch((err) => {
-    //   alert(err);
-    //   console.error(err);
-    // });
-    const nextBids = [...bids]; // clone of bids
-    for (let i = 0; i < nextBids.length; i++) {
-      const currBid = nextBids[i]; // currBid is the current bid in the array
-      if (currBid.id === bid.id) {
-        currBid.sent = !bid.sent;
-      }
-    }
-    setBids(nextBids);
+    const bidDoc = doc(db, "bids", bid.id);
+    await updateDoc(bidDoc, {
+      sent: !bid.sent, // ! "bang" sets to opposite "negate"
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
+    });
+    // const nextBids = [...bids]; // clone of bids
+    // for (let i = 0; i < nextBids.length; i++) {
+    //   const currBid = nextBids[i]; // currBid is the current bid in the array
+    //   if (currBid.id === bid.id) {
+    //     currBid.sent = !bid.sent;
+    //   }
+    // }
+    // setBids(nextBids);
   };
   // we need the current value of bid.sent
   // update the stale value with new value in database
   // update the UI: trigger a rerender from setting state
+  // have to figure out how to use updatedoc() using "for" loop
 
   const updateBidding = async (bid) => {
     // e.preventDefault();
     console.log("Update Bidding Succesful! Bid ID: " + bid.id);
     console.log(bid.bidding);
-    // const bidDoc = doc(db, "bids", bid.id);
-    // await updateDoc(bidDoc, {
-    //   bidding: bidding,
-    // }).catch((err) => {
-    //   alert(err);
-    //   console.error(err);
-    // });
-    const nextBids = [...bids]; // clone of bids
-    for (let i = 0; i < nextBids.length; i++) {
-      const currBid = nextBids[i]; // currBid is the current bid in the array
-      if (currBid.id === bid.id) {
-        currBid.bidding = !bid.bidding; // ! "bang" sets to opposite "negate"
-      }
-    }
-    setBids(nextBids);
+    const bidDoc = doc(db, "bids", bid.id);
+    await updateDoc(bidDoc, {
+      bidding: !bid.bidding,
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
+    });
+    // const nextBids = [...bids]; // clone of bids
+    // for (let i = 0; i < nextBids.length; i++) {
+    //   const currBid = nextBids[i]; // currBid is the current bid in the array
+    //   if (currBid.id === bid.id) {
+    //     currBid.bidding = !bid.bidding; // ! "bang" sets to opposite "negate"
+    //   }
+    // }
+    // setBids(nextBids);
   };
 
-  // useEffect(() => {
-  //   const getBids = async () => {
-  //     const data = await getDocs(bidsCollectionRef);
-  //     const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-  //     setBids(items);
-  //   };
+  useEffect(() => {
+    const getBids = async () => {
+      const data = await getDocs(bidsCollectionRef);
+      const items = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+      setBids(items);
+    };
 
-  //   getBids();
-  // }, [bidsCollectionRef]);
+    getBids();
+  }, [bidsCollectionRef]);
 
   return (
     <div className="app-container">
@@ -146,7 +149,7 @@ function Home() {
             <th>Date Sent</th>
           </tr>
         </thead>
-        {bids.map((bid) => {
+        {bids?.map((bid) => {
           return (
             <tbody key={bid.id}>
               <tr>
