@@ -40,7 +40,7 @@ import BiddingSwitch from "../components/BiddingSwitch";
 // only when the new state differs from the previous state will avoid
 // unnecessary re-renders.
 
-function Home() {
+function Bids() {
   const navigate = useNavigate();
   const [bids, setBids] = useState();
   const bidsCollectionRef = collection(db, "bids");
@@ -131,6 +131,14 @@ function Home() {
       >
         Change Order Logs
       </button>
+      <button
+        onClick={() => {
+          navigate("/dashboard");
+        }}
+        className="change-order"
+      >
+        Dashboard
+      </button>
       <table>
         <thead>
           <tr>
@@ -218,4 +226,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Bids;

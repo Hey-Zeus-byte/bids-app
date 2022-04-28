@@ -1,5 +1,6 @@
 import React, {useRef, useState} from "react";
 import {Card, Form, Button, Alert} from "react-bootstrap";
+import {useNavigate, Link} from "react-router-dom";
 import {useAuth} from "../utils/AuthContext";
 
 export default function SignUp() {
@@ -9,20 +10,22 @@ export default function SignUp() {
   const {signup} = useAuth();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (passwordRef.current.value === passwordConfirmRef.current.value) {
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
 
     try {
-      setError(""); // user does not create multiple accounts
+      setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      navigate("/");
     } catch {
-      setError("create account unsuccesful");
+      setError("create account unsuccessful!");
     }
     setLoading(false);
   }
@@ -37,21 +40,28 @@ export default function SignUp() {
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required></Form.Control>
+              <Form.Control
+                type="email"
+                ref={emailRef}
+                autoComplete="on"
+                required
+              ></Form.Control>
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 ref={passwordRef}
+                autoComplete="on"
                 required
               ></Form.Control>
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>password-confirm</Form.Label>
+              <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
                 ref={passwordConfirmRef}
+                autoComplete="on"
                 required
               ></Form.Control>
             </Form.Group>
@@ -61,7 +71,9 @@ export default function SignUp() {
           </Form>
         </Card.Body>
       </Card>
-      <div>Already have an account? Log In</div>
+      <div>
+        Already have an account? <Link to="/">Log In</Link>
+      </div>
     </>
   );
 }
