@@ -22,10 +22,14 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value).then(
+        (response) => {
+          console.log(response);
+        }
+      );
       navigate("/");
     } catch {
-      setError("create account unsuccessful!");
+      setError("Couldn't make account!");
     }
     setLoading(false);
   }
@@ -53,7 +57,6 @@ export default function SignUp() {
                 type="password"
                 ref={passwordRef}
                 autoComplete="on"
-                required
               ></Form.Control>
             </Form.Group>
             <Form.Group id="password-confirm">
@@ -62,7 +65,6 @@ export default function SignUp() {
                 type="password"
                 ref={passwordConfirmRef}
                 autoComplete="on"
-                required
               ></Form.Control>
             </Form.Group>
             <Button disabled={loading} type="submit">

@@ -36,14 +36,14 @@ export default function ForgotPassword() {
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control type="email" ref={emailRef} />
             </Form.Group>
             <Button disabled={loading} type="submit">
               Reset Password
             </Button>
           </Form>
           <div>
-            <Link to="/">Login</Link>
+            Back to <Link to="/">Login</Link>
           </div>
         </Card.Body>
       </Card>
