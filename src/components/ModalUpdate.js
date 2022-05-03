@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {db} from "../utils/firebase-config";
-import "../css/Home.css";
+import "../css/Bids.css";
 import {updateDoc, doc} from "firebase/firestore";
 
 const ModalUpdate = (props) => {

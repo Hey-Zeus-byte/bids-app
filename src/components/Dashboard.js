@@ -22,7 +22,7 @@ export default function Dashboard() {
   return (
     <>
       <Card>
-        <Card.Body>
+        <Card.Body style={{fontSize: "25px"}}>
           <h2>Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
@@ -30,8 +30,20 @@ export default function Dashboard() {
         </Card.Body>
       </Card>
       <div>
-        <Button variant="link" onClick={handleLogout}>
+        <Button
+          variant="link"
+          onClick={handleLogout}
+          style={{fontSize: "25px"}}
+        >
           Log Out
+        </Button>
+        <Button
+          onClick={() => {
+            navigate("/bids_list");
+          }}
+          style={{fontSize: "25px"}}
+        >
+          Back
         </Button>
       </div>
     </>

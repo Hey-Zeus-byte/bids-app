@@ -16,12 +16,38 @@ const Routes = () => {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/update_profile" element={<UpdateProfile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/bids_list" element={<Bids />} />
-          <Route path="/change_order_log" element={<ChangeOrderLog />} />
-        </Route>
+        <Route
+          path="/update_profile"
+          element={
+            <PrivateRoute>
+              <UpdateProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/bids_list"
+          element={
+            <PrivateRoute>
+              <Bids />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/change_order_log"
+          element={
+            <PrivateRoute>
+              <ChangeOrderLog />
+            </PrivateRoute>
+          }
+        />
       </BrowserRoutes>
     </AuthProvider>
   );

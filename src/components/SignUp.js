@@ -38,7 +38,8 @@ export default function SignUp() {
     <>
       <Card>
         <Card.Body>
-          <h2>Sign Up</h2>
+          <h1 style={{fontSize: "50px", textAlign: "center"}}>GSCF Inc.</h1>
+          <h2 style={{fontSize: "25px", textAlign: "center"}}>Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {/* // if we have an error */}
           <Form onSubmit={handleSubmit}>

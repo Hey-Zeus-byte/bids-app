@@ -1,5 +1,5 @@
 import {useState} from "react";
-import "../css/Home.css";
+import "../css/Bids.css";
 import {db} from "../utils/firebase-config";
 import {collection, addDoc} from "firebase/firestore";
 

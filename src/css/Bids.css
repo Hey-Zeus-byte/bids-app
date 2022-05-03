@@ -137,6 +137,17 @@ img {
   position: absolute;
 }
 
+.dashboard {
+  position: relative;
+  right: 20px;
+  cursor: pointer;
+  line-height: 50px;
+  width: 250px;
+  font-size: 20pt;
+  font-family: tahoma;
+  position: absolute;
+}
+
 .iframe-container,
 iframe {
   margin: 90px 50px auto;

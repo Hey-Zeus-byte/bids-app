@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import moment from "moment";
-import "../css/Home.css";
+import "../css/Bids.css";
 import {db} from "../utils/firebase-config";
 import {
   deleteDoc,
@@ -135,7 +135,7 @@ function Bids() {
         onClick={() => {
           navigate("/dashboard");
         }}
-        className="change-order"
+        className="dashboard"
       >
         Dashboard
       </button>

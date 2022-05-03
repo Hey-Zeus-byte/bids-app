@@ -30,7 +30,10 @@ export default function ForgotPassword() {
     <>
       <Card>
         <Card.Body>
-          <h2>Password Reset</h2>
+          <h1 style={{fontSize: "50px", textAlign: "center"}}>GSCF Inc.</h1>
+          <h2 style={{fontSize: "25px", textAlign: "center"}}>
+            Password Reset
+          </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Home.css";
+import "../css/Bids.css";
 import {useNavigate} from "react-router-dom";
 import img1 from "../pdfs/389First.pdf";
 import img2 from "../pdfs/425First.pdf";
@@ -21,7 +21,7 @@ const ChangeOrderLog = () => {
       </h1>
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/bids_list");
         }}
         id="create-modal"
       >
