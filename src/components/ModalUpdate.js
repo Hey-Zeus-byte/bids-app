@@ -48,9 +48,7 @@ const ModalUpdate = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">
-            Update Bid Information: No need to fill all entries!
-          </h4>
+          <h4 className="modal-title">Update Bid Information</h4>
         </div>
         <div className="modal-body">
           <form>

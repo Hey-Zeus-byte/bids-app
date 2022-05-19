@@ -2,20 +2,16 @@ import {useState, useEffect} from "react";
 import moment from "moment";
 import "../css/Bids.css";
 import {db} from "../utils/firebase-config";
-import {
-  deleteDoc,
-  doc,
-  getDocs,
-  collection,
-  updateDoc,
-} from "firebase/firestore";
+import {doc, getDocs, collection, updateDoc} from "firebase/firestore";
 import ModalUpdate from "../components/ModalUpdate";
 import ModalCreate from "../components/ModalCreate";
+import MoreJobInfo from "../components/MoreJobInfo";
 import img from "../logo/GSCFINC.jpg";
 import {useNavigate} from "react-router-dom";
 import BidSentSwitch from "../components/BidSentSwitch";
 import BiddingSwitch from "../components/BiddingSwitch";
-// import mockBids from "../mock-data.json";
+import mockBids from "../mock-data.json";
+import DeleteBid from "../components/DeleteBid";
 
 // setState() enqueues changes to the component state and tells React
 // that this component and its children need to be re-rendered with the
@@ -42,20 +38,22 @@ import BiddingSwitch from "../components/BiddingSwitch";
 
 function Bids() {
   const navigate = useNavigate();
-  const [bids, setBids] = useState();
+  const [bids, setBids] = useState(mockBids);
   const bidsCollectionRef = collection(db, "bids");
   // const [sent, setSent] = useState();
   // const [bidding, setBidding] = useState();
 
   const [selectedBid, setSelectedBid] = useState(); // for update modal
   const [showCreate, setShowCreate] = useState(false); // for create modal
+  const [moreInfoBid, setMoreInfoBid] = useState(); // for more info modal
+  const [openDeleteBid, setOpenDeleteBid] = useState(); // for delete modal
 
-  const deleteBid = async (id) => {
-    console.log("Deleted Bid ID: " + id);
-    const bidDoc = doc(db, "bids", id);
-    await deleteDoc(bidDoc);
-    console.log("Deleted post data from id: " + id);
-  };
+  // const deleteBid = async (id) => {
+  //   console.log("Deleted Bid ID: " + id);
+  //   const bidDoc = doc(db, "bids", id);
+  //   await deleteDoc(bidDoc);
+  //   console.log("Deleted post data from id: " + id);
+  // };
 
   const updateSent = async (bid) => {
     console.log("Update Sent Succesful! Bid ID: " + bid.id);
@@ -114,44 +112,53 @@ function Bids() {
 
   return (
     <div className="app-container">
-      <img src={img} alt="logo" />
-      <button
-        onClick={() => {
-          setShowCreate(true);
+      <a rel="noreferrer" href="https://gscfinc.com/" target="_blank">
+        <img src={img} alt="logo" />
+      </a>
+      <div
+        style={{
+          textAlign: "center",
+          margin: "5px",
+          display: "flex",
         }}
-        id="create-modal"
       >
-        Create Bid
-      </button>
-      <button
-        onClick={() => {
-          navigate("/change_order_log");
-        }}
-        className="change-order"
-      >
-        Change Order Logs
-      </button>
-      <button
-        onClick={() => {
-          navigate("/dashboard");
-        }}
-        className="dashboard"
-      >
-        Dashboard
-      </button>
-      <table>
+        <button
+          onClick={() => {
+            navigate("/change_order_log");
+          }}
+          className="change-order"
+          style={{fontSize: "25px", marginRight: "15px"}}
+        >
+          Change Order Logs
+        </button>
+        <button
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+          className="dashboard"
+          style={{fontSize: "25px", marginRight: "15px"}}
+        >
+          Dashboard
+        </button>
+        <button
+          onClick={() => {
+            setShowCreate(true);
+          }}
+          id="create-modal"
+          style={{fontSize: "25px", marginRight: "15px"}}
+        >
+          Create Bid
+        </button>
+      </div>
+      <table style={{resize: "both"}}>
         <thead>
           <tr>
             <th>Options</th>
             <th>Job Name</th>
+            <th>More info</th>
             <th>General Contractor</th>
             <th>City</th>
             <th>Date Posted</th>
-            <th>Project Type</th>
-            <th>Type of Wage</th>
-            <th>Construction Type</th>
-            <th>Floor System</th>
-            <th>Roof System</th>
             <th>Due Date</th>
             <th>Days Left</th>
             <th>Date Sent</th>
@@ -164,7 +171,7 @@ function Bids() {
                 <div className="options-container">
                   <button
                     onClick={() => {
-                      deleteBid(bid.id);
+                      setOpenDeleteBid(bid.id);
                     }}
                     id="delete-button"
                   >
@@ -194,24 +201,25 @@ function Bids() {
                   </div>
                 </div>
                 <td>{bid.jobName}</td>
+                <button
+                  id="moreInfo-button"
+                  onClick={() => {
+                    setMoreInfoBid(bid);
+                  }}
+                >
+                  Click me!
+                </button>
                 <td>{bid.generalContractor}</td>
                 <td>{bid.city}</td>
                 <td>{moment(bid.date).calendar()}</td>
-                <td>{bid.projectType}</td>
-                <td>{bid.wageType}</td>
-                <td>{bid.constructType}</td>
-                <td>{bid.floorSystem}</td>
-                <td>{bid.roofSystem}</td>
                 <td>{moment(bid.dueDate).calendar()}</td>
                 <td>{bid.daysLeft}</td>
-                {/* this will be the difference between date posted and deadline */}
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
             </tbody>
           );
         })}
       </table>
-      <h4 id="bottom">Created By: Jesus Valdez</h4>
       <div>
         <ModalCreate
           onClose={() => setShowCreate(false)}
@@ -220,6 +228,14 @@ function Bids() {
         <ModalUpdate
           onClose={() => setSelectedBid(null)}
           selectedBid={selectedBid}
+        />
+        <MoreJobInfo
+          onClose={() => setMoreInfoBid(null)}
+          moreInfoBid={moreInfoBid}
+        />
+        <DeleteBid
+          onClose={() => setOpenDeleteBid(null)}
+          openDeleteBid={openDeleteBid}
         />
       </div>
     </div>

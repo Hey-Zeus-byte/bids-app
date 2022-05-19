@@ -38,6 +38,12 @@ td {
   width: 100%;
 }
 
+.button {
+  cursor: pointer;
+  margin-right: 25px;
+  font-size: 15px;
+}
+
 form * {
   font-size: 20px;
   width: 100%;
@@ -49,22 +55,21 @@ form * {
 #create-modal {
   cursor: pointer;
   border: 5px solid #4caf50;
-  line-height: 50px;
-  width: 200px;
-  font-size: 20pt;
-  font-family: tahoma;
-  margin-top: 15px;
-  margin-right: 300px;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
+
 #update-button {
   cursor: pointer;
   width: 200px;
   background-color: blue;
   color: white;
   padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 25px;
+}
+
+#moreInfo-button {
+  cursor: pointer;
+  width: 200px;
   border-radius: 15px;
   font-size: 25px;
 }
@@ -99,8 +104,8 @@ form * {
 }
 
 .modal-content {
-  width: 1000px;
-  background-color: white;
+  width: 800px;
+  background-color: tan;
   padding: 20px 20px;
 }
 
@@ -115,9 +120,9 @@ form * {
 }
 
 .modal-body {
-  padding: 10px;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  padding: 5px;
+  border-top: 5px solid red;
+  border-bottom: 5px solid red;
 }
 
 img {
@@ -130,22 +135,12 @@ img {
 
 .change-order {
   cursor: pointer;
-  line-height: 50px;
-  width: 180px;
-  font-size: 20pt;
-  font-family: tahoma;
-  position: absolute;
+  border: 5px solid blue;
 }
 
 .dashboard {
-  position: relative;
-  right: 20px;
   cursor: pointer;
-  line-height: 50px;
-  width: 250px;
-  font-size: 20pt;
-  font-family: tahoma;
-  position: absolute;
+  border: 5px solid brown;
 }
 
 .iframe-container,
