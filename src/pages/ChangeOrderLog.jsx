@@ -23,7 +23,8 @@ const ChangeOrderLog = () => {
         onClick={() => {
           navigate("/bids_list");
         }}
-        id="create-modal"
+        id="button"
+        style={{fontSize: "20px"}}
       >
         Go back to bid list
       </button>

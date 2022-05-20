@@ -48,13 +48,6 @@ function Bids() {
   const [moreInfoBid, setMoreInfoBid] = useState(); // for more info modal
   const [openDeleteBid, setOpenDeleteBid] = useState(); // for delete modal
 
-  // const deleteBid = async (id) => {
-  //   console.log("Deleted Bid ID: " + id);
-  //   const bidDoc = doc(db, "bids", id);
-  //   await deleteDoc(bidDoc);
-  //   console.log("Deleted post data from id: " + id);
-  // };
-
   const updateSent = async (bid) => {
     console.log("Update Sent Succesful! Bid ID: " + bid.id);
     console.log(bid.sent);
@@ -67,7 +60,7 @@ function Bids() {
     });
     // const nextBids = [...bids]; // clone of bids
     // for (let i = 0; i < nextBids.length; i++) {
-    //   const currBid = nextBids[i]; // currBid is the current bid in the array
+    //   const currBid = nextBids[i];
     //   if (currBid.id === bid.id) {
     //     currBid.sent = !bid.sent;
     //   }

@@ -19,7 +19,8 @@ const DeleteBid = (props) => {
       <div className="modal-content">
         <div className="modal-header">
           <h1 className="modal-title">
-            Are you sure you want to delete this bid?
+            Are you sure you want to delete this bid? If Yes, exit the modal
+            after.
           </h1>
         </div>
         <div className="modal-footer">
@@ -34,6 +35,10 @@ const DeleteBid = (props) => {
           <button onClick={props.onClose} className="button">
             No
           </button>
+          <button onClick={props.onClose} className="button">
+            Exit
+          </button>
+          {/* meantime until I figure out how to close after user presses 'Yes' */}
         </div>
       </div>
     </div>

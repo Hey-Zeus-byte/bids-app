@@ -65,17 +65,17 @@ function ModalCreate(props) {
           <form>
             <input
               type="boolean"
-              placeholder="Leave Blank"
               onChange={() => {
                 setSent(false);
               }}
+              hidden={true}
             />
             <input
               type="boolean"
-              placeholder="Leave Blank"
               onChange={() => {
                 setBidding(false);
               }}
+              hidden={true}
             />
             <input
               type="string"
