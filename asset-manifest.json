@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bids-app/static/css/main.6242c4f5.css",
-    "main.js": "/bids-app/static/js/main.b7074833.js",
+    "main.js": "/bids-app/static/js/main.88d04c43.js",
     "static/media/VirginiaStreetStudios.pdf": "/bids-app/static/media/VirginiaStreetStudios.54eb75fe45d243d8b723.pdf",
     "static/media/Amador.pdf": "/bids-app/static/media/Amador.9f5f22896afb56d3d997.pdf",
     "static/media/Burlingame.pdf": "/bids-app/static/media/Burlingame.48e99acf50390fcb9110.pdf",
@@ -13,10 +13,10 @@
     "static/media/GSCFINC.jpg": "/bids-app/static/media/GSCFINC.cbcc857165b01ca970b3.jpg",
     "index.html": "/bids-app/index.html",
     "main.6242c4f5.css.map": "/bids-app/static/css/main.6242c4f5.css.map",
-    "main.b7074833.js.map": "/bids-app/static/js/main.b7074833.js.map"
+    "main.88d04c43.js.map": "/bids-app/static/js/main.88d04c43.js.map"
   },
   "entrypoints": [
     "static/css/main.6242c4f5.css",
-    "static/js/main.b7074833.js"
+    "static/js/main.88d04c43.js"
   ]
 }
