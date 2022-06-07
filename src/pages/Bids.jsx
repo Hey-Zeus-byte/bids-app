@@ -12,6 +12,7 @@ import BidSentSwitch from "../components/BidSentSwitch";
 import BiddingSwitch from "../components/BiddingSwitch";
 import mockBids from "../mock-data.json";
 import DeleteBid from "../components/DeleteBid";
+import {Table, Button, ButtonGroup} from "react-bootstrap";
 
 // setState() enqueues changes to the component state and tells React
 // that this component and its children need to be re-rendered with the
@@ -101,7 +102,7 @@ function Bids() {
     };
 
     getBids();
-  }, [bidsCollectionRef]);
+  }, [bidsCollectionRef, setBids]);
 
   return (
     <div className="app-container">
@@ -115,35 +116,31 @@ function Bids() {
           display: "flex",
         }}
       >
-        <button
-          onClick={() => {
-            navigate("/change_order_log");
-          }}
-          className="change-order"
-          style={{fontSize: "25px", marginRight: "15px"}}
-        >
-          Change Order Logs
-        </button>
-        <button
-          onClick={() => {
-            navigate("/dashboard");
-          }}
-          className="dashboard"
-          style={{fontSize: "25px", marginRight: "15px"}}
-        >
-          Dashboard
-        </button>
-        <button
-          onClick={() => {
-            setShowCreate(true);
-          }}
-          id="create-modal"
-          style={{fontSize: "25px", marginRight: "15px"}}
-        >
-          Create Bid
-        </button>
+        <ButtonGroup aria-label="Basic example">
+          <Button
+            onClick={() => {
+              navigate("/change_order_log");
+            }}
+          >
+            Change Order Logs
+          </Button>
+          <Button
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
+            Dashboard
+          </Button>
+          <Button
+            onClick={() => {
+              setShowCreate(true);
+            }}
+          >
+            Create Bid
+          </Button>
+        </ButtonGroup>
       </div>
-      <table style={{resize: "both"}}>
+      <Table style={{resize: "both"}} striped bordered hover size="sm">
         <thead>
           <tr>
             <th>Options</th>
@@ -153,7 +150,6 @@ function Bids() {
             <th>City</th>
             <th>Date Posted</th>
             <th>Due Date</th>
-            <th>Days Left</th>
             <th>Date Sent</th>
           </tr>
         </thead>
@@ -206,13 +202,12 @@ function Bids() {
                 <td>{bid.city}</td>
                 <td>{moment(bid.date).calendar()}</td>
                 <td>{moment(bid.dueDate).calendar()}</td>
-                <td>{bid.daysLeft}</td>
                 <td>{moment(bid.dateSent).calendar()}</td>
               </tr>
             </tbody>
           );
         })}
-      </table>
+      </Table>
       <div>
         <ModalCreate
           onClose={() => setShowCreate(false)}

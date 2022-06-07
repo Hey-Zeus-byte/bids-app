@@ -15,7 +15,6 @@ const ModalUpdate = (props) => {
   const [newWageType, setNewWageType] = useState("");
   const [newFloorSystem, setNewFloorSystem] = useState("");
   const [newRoofSystem, setNewRoofSystem] = useState("");
-  // const [newDaysLeft, setNewDaysLeft] = useState("");
 
   const updateBid = async (e) => {
     e.preventDefault();
@@ -32,7 +31,6 @@ const ModalUpdate = (props) => {
       floorSystem: newFloorSystem,
       roofSystem: newRoofSystem,
       dueDate: newDueDate,
-      // daysLeft: newDaysLeft,
       dateSent: newDateSent,
     }).catch((err) => {
       alert(err);

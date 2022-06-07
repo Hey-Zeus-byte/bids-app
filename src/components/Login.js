@@ -30,13 +30,15 @@ export default function Login() {
     <>
       <Card>
         <Card.Body>
-          <h1 style={{fontSize: "50px", textAlign: "center"}}>GSCF Inc.</h1>
+          <h1 style={{fontSize: "50px", textAlign: "center"}}>
+            {`Golden State Construction & Framing, Inc.`}
+          </h1>
           <h2 style={{fontSize: "25px", textAlign: "center"}}>Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control type="email" ref={emailRef} required size="lg" />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
@@ -45,20 +47,21 @@ export default function Login() {
                 ref={passwordRef}
                 autoComplete="on"
                 required
+                size="lg"
               />
             </Form.Group>
-            <Button disabled={loading} type="submit">
+            <Button disabled={loading} type="submit" size="lg" active>
               Log In
             </Button>
           </Form>
-          <div>
+          <Form.Text style={{fontSize: "20px"}}>
             <Link to="/forgot_password">Forgot Password?</Link>
-          </div>
+          </Form.Text>
         </Card.Body>
       </Card>
-      <div>
+      <Form.Text style={{fontSize: "20px"}}>
         Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
+      </Form.Text>
     </>
   );
 }

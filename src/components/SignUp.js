@@ -38,7 +38,9 @@ export default function SignUp() {
     <>
       <Card>
         <Card.Body>
-          <h1 style={{fontSize: "50px", textAlign: "center"}}>GSCF Inc.</h1>
+          <h1 style={{fontSize: "50px", textAlign: "center"}}>
+            {`Golden State Construction & Framing, Inc.`}
+          </h1>
           <h2 style={{fontSize: "25px", textAlign: "center"}}>Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {/* // if we have an error */}
@@ -68,15 +70,15 @@ export default function SignUp() {
                 autoComplete="on"
               ></Form.Control>
             </Form.Group>
-            <Button disabled={loading} type="submit">
+            <Button disabled={loading} type="submit" size="lg" active>
               Sign Up
             </Button>
           </Form>
         </Card.Body>
       </Card>
-      <div>
+      <Form.Text style={{fontSize: "20px"}}>
         Already have an account? <Link to="/">Log In</Link>
-      </div>
+      </Form.Text>
     </>
   );
 }
