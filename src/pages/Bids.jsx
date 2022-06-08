@@ -7,12 +7,13 @@ import ModalUpdate from "../components/ModalUpdate";
 import ModalCreate from "../components/ModalCreate";
 import MoreJobInfo from "../components/MoreJobInfo";
 import img from "../logo/GSCFINC.jpg";
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import BidSentSwitch from "../components/BidSentSwitch";
 import BiddingSwitch from "../components/BiddingSwitch";
 import mockBids from "../mock-data.json";
 import DeleteBid from "../components/DeleteBid";
-import {Table, Button, ButtonGroup} from "react-bootstrap";
+import {Table} from "react-bootstrap";
+import NavBar from "../components/NavBar";
 
 // setState() enqueues changes to the component state and tells React
 // that this component and its children need to be re-rendered with the
@@ -38,7 +39,7 @@ import {Table, Button, ButtonGroup} from "react-bootstrap";
 // unnecessary re-renders.
 
 function Bids() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [bids, setBids] = useState(mockBids);
   const bidsCollectionRef = collection(db, "bids");
   // const [sent, setSent] = useState();
@@ -105,40 +106,30 @@ function Bids() {
   }, [bidsCollectionRef, setBids]);
 
   return (
-    <div className="app-container">
-      <a rel="noreferrer" href="https://gscfinc.com/" target="_blank">
-        <img src={img} alt="logo" />
-      </a>
+    <div>
+      <div>
+        <NavBar />
+      </div>
+      <div style={{display: "flex", paddingTop: "60px"}}>
+        <a rel="noreferrer" href="https://gscfinc.com/" target="_blank">
+          <img src={img} alt="logo" />
+        </a>
+      </div>
       <div
-        style={{
-          textAlign: "center",
-          margin: "5px",
-          display: "flex",
-        }}
+      // style={{
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      // }}
       >
-        <ButtonGroup aria-label="Basic example">
-          <Button
-            onClick={() => {
-              navigate("/change_order_log");
-            }}
-          >
-            Change Order Logs
-          </Button>
-          <Button
-            onClick={() => {
-              navigate("/dashboard");
-            }}
-          >
-            Dashboard
-          </Button>
-          <Button
-            onClick={() => {
-              setShowCreate(true);
-            }}
-          >
-            Create Bid
-          </Button>
-        </ButtonGroup>
+        <button
+          id="create-modal"
+          onClick={() => {
+            setShowCreate(true);
+          }}
+        >
+          Create Bid
+        </button>
       </div>
       <Table style={{resize: "both"}} striped bordered hover size="sm">
         <thead>

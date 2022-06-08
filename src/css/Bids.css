@@ -55,6 +55,7 @@ form * {
 #create-modal {
   cursor: pointer;
   border: 5px solid #4caf50;
+  font-size: 35px;
 }
 
 #update-button {
@@ -126,7 +127,7 @@ form * {
 }
 
 img {
-  margin: 5px;
+  margin: 10px;
   border: 1px solid #ccc;
   float: left;
   width: 450px;
