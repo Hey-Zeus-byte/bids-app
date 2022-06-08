@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bids-app/static/css/main.6242c4f5.css",
-    "main.js": "/bids-app/static/js/main.9c68d4a7.js",
+    "main.css": "/bids-app/static/css/main.0ab60f83.css",
+    "main.js": "/bids-app/static/js/main.ad5bb296.js",
     "static/media/VirginiaStreetStudios.pdf": "/bids-app/static/media/VirginiaStreetStudios.54eb75fe45d243d8b723.pdf",
     "static/media/Amador.pdf": "/bids-app/static/media/Amador.9f5f22896afb56d3d997.pdf",
     "static/media/Burlingame.pdf": "/bids-app/static/media/Burlingame.48e99acf50390fcb9110.pdf",
@@ -12,11 +12,11 @@
     "static/media/Foothill.pdf": "/bids-app/static/media/Foothill.19f090419573a29fa354.pdf",
     "static/media/GSCFINC.jpg": "/bids-app/static/media/GSCFINC.cbcc857165b01ca970b3.jpg",
     "index.html": "/bids-app/index.html",
-    "main.6242c4f5.css.map": "/bids-app/static/css/main.6242c4f5.css.map",
-    "main.9c68d4a7.js.map": "/bids-app/static/js/main.9c68d4a7.js.map"
+    "main.0ab60f83.css.map": "/bids-app/static/css/main.0ab60f83.css.map",
+    "main.ad5bb296.js.map": "/bids-app/static/js/main.ad5bb296.js.map"
   },
   "entrypoints": [
-    "static/css/main.6242c4f5.css",
-    "static/js/main.9c68d4a7.js"
+    "static/css/main.0ab60f83.css",
+    "static/js/main.ad5bb296.js"
   ]
 }
